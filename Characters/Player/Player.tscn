@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=5 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="Texture2D" uid="uid://baxai2pm6non2" path="res://Textures/16x16_white.png" id="1_l7vhe"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j7vou"]
 radius = 21.0
 height = 90.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxoem"]
+size = Vector2(2, 10)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cg0yb")
@@ -20,4 +23,47 @@ scale = Vector2(3, 6)
 texture = ExtResource("1_l7vhe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+<<<<<<< HEAD
 shape = SubResource("CapsuleShape2D_j7vou")
+=======
+shape = SubResource("RectangleShape2D_o6vtc")
+
+[node name="ShadowCheckingAreas" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="ShadowCheckAreaBottomLeft" type="Area2D" parent="ShadowCheckingAreas"]
+position = Vector2(-24, 43)
+collision_layer = 16384
+metadata/_edit_lock_ = true
+
+[node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaBottomLeft"]
+shape = SubResource("RectangleShape2D_fxoem")
+metadata/_edit_lock_ = true
+
+[node name="ShadowCheckAreaBottomRight" type="Area2D" parent="ShadowCheckingAreas"]
+position = Vector2(24, 43)
+collision_layer = 16384
+metadata/_edit_lock_ = true
+
+[node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaBottomRight"]
+shape = SubResource("RectangleShape2D_fxoem")
+metadata/_edit_lock_ = true
+
+[node name="ShadowCheckAreaTopLeft" type="Area2D" parent="ShadowCheckingAreas"]
+position = Vector2(-24, -43)
+collision_layer = 16384
+metadata/_edit_lock_ = true
+
+[node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaTopLeft"]
+shape = SubResource("RectangleShape2D_fxoem")
+metadata/_edit_lock_ = true
+
+[node name="ShadowCheckAreaTopRight" type="Area2D" parent="ShadowCheckingAreas"]
+position = Vector2(24, -43)
+collision_layer = 16384
+metadata/_edit_lock_ = true
+
+[node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaTopRight"]
+shape = SubResource("RectangleShape2D_fxoem")
+metadata/_edit_lock_ = true
+>>>>>>> fee60708c73233d552edcb5e1e587868cab72303

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtsuuoxfimxl2"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Texture2D" uid="uid://baxai2pm6non2" path="res://Textures/16x16_white.png" id="1_6mjgt"]
-[ext_resource type="PackedScene" uid="uid://c1ogvedow02uu" path="res://Scenes/Player.tscn" id="2_lqu6h"]
+[ext_resource type="PackedScene" uid="uid://c1ogvedow02uu" path="res://Characters/Player/Player.tscn" id="2_lqu6h"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nn3ea"]
 polygon = PackedVector2Array(198, 989, 90, 889, -130, 881, -250, 952, -351, 1069, -314, 1205, -208, 1325, -112, 1361)

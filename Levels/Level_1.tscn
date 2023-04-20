@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj580txvtoe18"]
+[gd_scene load_steps=8 format=3 uid="uid://dj580txvtoe18"]
 
 [ext_resource type="Texture2D" uid="uid://baxai2pm6non2" path="res://Textures/16x16_white.png" id="1_6mjgt"]
 [ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="2_lqu6h"]
+[ext_resource type="PackedScene" uid="uid://pxkpj2ulp307" path="res://Characters/Player/UI/HealthBar.tscn" id="3_c4n5p"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nn3ea"]
-polygon = PackedVector2Array(198, 989, 90, 889, -130, 881, -250, 952, -351, 1069, -314, 1205, -208, 1325, -112, 1361)
+polygon = PackedVector2Array(198, 989, 90, 889, -130, 881, -250, 952, -351, 1069, -426, 1361, 96, 1362)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hqae0"]
+polygon = PackedVector2Array(90, 889, -189, 891, -316, 1363, 96, 1362)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3tjkr"]
 size = Vector2(2404, 40.5)
@@ -12,7 +16,7 @@ size = Vector2(2404, 40.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c680m"]
 size = Vector2(40, 659.125)
 
-[node name="Level_1" type="Node2D"]
+[node name="Level_1" type="Node2D" groups=["level_root_node"]]
 
 [node name="TestScenery" type="Node2D" parent="."]
 
@@ -22,7 +26,7 @@ scale = Vector2(72.25, 40.5)
 texture = ExtResource("1_6mjgt")
 metadata/_edit_lock_ = true
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="TestScenery"]
+[node name="Sun" type="DirectionalLight2D" parent="TestScenery" groups=["sun"]]
 position = Vector2(1009, 63)
 rotation = 0.261799
 color = Color(1, 0.662745, 0.278431, 1)
@@ -30,11 +34,16 @@ shadow_enabled = true
 shadow_color = Color(0.560784, 0.298039, 0.054902, 0.168627)
 metadata/_edit_lock_ = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="TestScenery"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="TestScenery" groups=["shadows"]]
 z_index = -1
 position = Vector2(427, -711)
 occluder = SubResource("OccluderPolygon2D_nn3ea")
 metadata/_edit_lock_ = true
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="TestScenery" groups=["shadows"]]
+z_index = -1
+position = Vector2(1266, -711)
+occluder = SubResource("OccluderPolygon2D_hqae0")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="TestScenery"]
 color = Color(0.14902, 0.14902, 0.14902, 1)
@@ -57,15 +66,18 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 648)
 
 [node name="Floor" type="CollisionShape2D" parent="Bounds"]
-position = Vector2(1116, 20.75)
+position = Vector2(1082, 23)
 shape = SubResource("RectangleShape2D_3tjkr")
+metadata/_edit_lock_ = true
 
 [node name="WallRight" type="CollisionShape2D" parent="Bounds"]
 position = Vector2(2271, -319)
 shape = SubResource("RectangleShape2D_c680m")
+metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("2_lqu6h")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_lqu6h")]
 position = Vector2(794, 351)
+collision_layer = 2
 floor_stop_on_slope = false
 floor_max_angle = 0.872665
 
@@ -79,3 +91,11 @@ position_smoothing_enabled = true
 position_smoothing_speed = 100.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("3_c4n5p")]
+offset_left = -556.0
+offset_top = -294.0
+offset_right = -156.0
+offset_bottom = -274.0

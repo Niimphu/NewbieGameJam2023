@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpfpttdr51tt"]
+[gd_scene load_steps=6 format=3 uid="uid://cskjxmhmjrswh"]
 
 [ext_resource type="Texture2D" uid="uid://b8xbomv1ds6be" path="res://Textures/Free assets/Tileset_pack/Dirt_tileset.png" id="1_1hkyh"]
 [ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="2_ddsjf"]
@@ -568,14 +568,17 @@ polygon = PackedVector2Array(-405, 637, -108, 653, 63, 634, 142, 629, 240, 629, 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ParallaxBackground/ParallaxLayer/StaticBody2D"]
 polygon = PackedVector2Array(-405, 637, -108, 653, 63, 634, 142, 629, 240, 629, 389, 637, 589, 636, 697, 626, 789, 612, 846, 599, 922, 578, 1019, 564, 1111, 556, 1219, 548, 1317, 521, 1409, 496, 1479, 482, 1582, 468, 1659, 476, 1739, 503, 1835, 515, 1899, 519, 1980, 515, 2119, 512, 2169, 507, 2198, 488, 2226, 458, 2241, 422, 2247, 398, 2251, 391, 2263, 386, 2297, 381, 2358, 379, 2402, 377, 2436, 379, 2896, 386, 3035, 389, 3181, 386, 3305, 405, 3413, 385, 3427, 340, 3417, 268, 3421, 207, 3428, 126, 3437, 86, 3473, 70, 3740, 70, 4176, 92, 4357, 90, 4488, 84, 4877, 73, 4931, 83, 5003, 103, 5093, 135, 5135, 162, 5176, 217, 5225, 221, 5261, 223, 5290, 230, 5315, 231, 5327, 235, 5334, 240, 5338, 255, 5339, 274, 5346, 296, 5401, 312, 5429, 324, 5496, 335, 5669, 376, 5791, 421, 5961, 473, 6139, 506, 6193, 482, 6211, 428, 6229, 387, 6272, 371, 6377, 354, 6475, 345, 6633, 348, 6771, 314, 7951, 225, 8283, 262, 8774, 270, 8933, 497, 8993, 761, 9228, 3611, -1418, 4233, -1895, 423, -1575, 318, -600, 139, -587, 641)
 
-[node name="Player" parent="." instance=ExtResource("2_ddsjf")]
-position = Vector2(180, 503)
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_ddsjf")]
+position = Vector2(189, 429)
+collision_layer = 2
+floor_stop_on_slope = false
+floor_max_angle = 0.872665
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(180, 503)
+position = Vector2(189, 429)
 offset = Vector2(0, -100)
 process_callback = 0
 position_smoothing_enabled = true

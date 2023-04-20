@@ -14,6 +14,9 @@ var player_in_sunlight: bool = false
 # TODO: Find a way to detect when the scene changes and call refresh_occluder_polygons()
 
 func _ready():
+	# We will not actually run this script unless the level contains a "sun" directional light
+	set_process(false)
+	
 	refresh_shadow_detection()
 
 func _process(_delta):
@@ -21,7 +24,13 @@ func _process(_delta):
 	
 func refresh_shadow_detection():
 	# Get the angle the sun is facing. Used in the ShapeCast2D calculations
-	var sun_rotation = get_tree().get_first_node_in_group("sun").global_rotation
+	var sun = get_tree().get_first_node_in_group("sun")
+	
+	if not sun:
+		print("[DirectSunlightManager] No directional light in the \"sun\" group found. Disabling direct sunlight detection for this scene.")
+		return
+	
+	var sun_rotation = sun.global_rotation
 	sun_direction_vector = Vector2(-sin(sun_rotation), cos(sun_rotation))
 	
 	player = get_tree().get_first_node_in_group("player")
@@ -39,6 +48,9 @@ func refresh_shadow_detection():
 	refresh_occluder_polygons()
 	delete_all_shadow_shape_casts()
 	instantiate_shadow_shape_casts()
+	
+	if not is_processing():
+		set_process(true)
 	
 # Reinitializes the occluder_polygons array with all
 # of the light occluder polygons in the current level

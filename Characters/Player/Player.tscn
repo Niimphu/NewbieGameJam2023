@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=8 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="Texture2D" uid="uid://baxai2pm6non2" path="res://Textures/16x16_white.png" id="1_l7vhe"]
+[ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
+[ext_resource type="SpriteFrames" uid="uid://qaknhgla8llv" path="res://Characters/Player/Parasol/ParasolAnimationFrames.tres" id="3_80ogd"]
+[ext_resource type="Script" path="res://Characters/Player/Parasol/Parasol.gd" id="4_c045m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6vtc"]
 size = Vector2(48, 96)
@@ -11,6 +14,10 @@ size = Vector2(2, 10)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cg0yb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("2_tgliu")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 1, 1)
@@ -59,3 +66,12 @@ metadata/_edit_lock_ = true
 [node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaTopRight"]
 shape = SubResource("RectangleShape2D_fxoem")
 metadata/_edit_lock_ = true
+
+[node name="Parasol" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("3_80ogd")
+animation = &"open_close"
+script = ExtResource("4_c045m")
+
+[connection signal="animation_finished" from="Parasol" to="Parasol" method="_on_animation_finished"]

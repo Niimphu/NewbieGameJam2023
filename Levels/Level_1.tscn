@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj580txvtoe18"]
+[gd_scene load_steps=7 format=3 uid="uid://dj580txvtoe18"]
 
 [ext_resource type="Texture2D" uid="uid://baxai2pm6non2" path="res://Textures/16x16_white.png" id="1_6mjgt"]
 [ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="2_lqu6h"]
-[ext_resource type="PackedScene" uid="uid://pxkpj2ulp307" path="res://Characters/Player/UI/HealthBar.tscn" id="3_c4n5p"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nn3ea"]
 polygon = PackedVector2Array(198, 989, 90, 889, -130, 881, -250, 952, -351, 1069, -426, 1361, 96, 1362)
@@ -91,11 +90,3 @@ position_smoothing_enabled = true
 position_smoothing_speed = 100.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("3_c4n5p")]
-offset_left = -556.0
-offset_top = -294.0
-offset_right = -156.0
-offset_bottom = -274.0

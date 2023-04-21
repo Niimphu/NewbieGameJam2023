@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://qaknhgla8llv"]
+
+[ext_resource type="Texture2D" uid="uid://hmjwb4olh02x" path="res://Characters/Player/Parasol/PlaceholderAssets/ParasolAnimation.png" id="1_grbwt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp70y"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(0, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yqrb"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(96, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxbca"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(192, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upccs"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(288, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2xxo"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(384, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxav4"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(480, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs1pb"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(576, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad4qq"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(672, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxkr8"]
+atlas = ExtResource("1_grbwt")
+region = Rect2(768, 0, 96, 80)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp70y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yqrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxbca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upccs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2xxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxav4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs1pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad4qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxkr8")
+}],
+"loop": false,
+"name": &"open_close",
+"speed": 20.0
+}]

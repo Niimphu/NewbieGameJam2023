@@ -6,8 +6,9 @@
 [ext_resource type="SpriteFrames" uid="uid://qaknhgla8llv" path="res://Characters/Player/Parasol/ParasolAnimationFrames.tres" id="3_80ogd"]
 [ext_resource type="Script" path="res://Characters/Player/Parasol/Parasol.gd" id="4_c045m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6vtc"]
-size = Vector2(48, 96)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vmqq7"]
+radius = 24.0
+height = 96.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxoem"]
 size = Vector2(2, 10)
@@ -26,15 +27,13 @@ scale = Vector2(3, 6)
 texture = ExtResource("1_l7vhe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_o6vtc")
+shape = SubResource("CapsuleShape2D_vmqq7")
 
 [node name="ShadowCheckingAreas" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="ShadowCheckAreaBottomLeft" type="Area2D" parent="ShadowCheckingAreas"]
 position = Vector2(-24, 43)
 collision_layer = 16384
-metadata/_edit_lock_ = true
 
 [node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaBottomLeft"]
 shape = SubResource("RectangleShape2D_fxoem")
@@ -43,7 +42,6 @@ metadata/_edit_lock_ = true
 [node name="ShadowCheckAreaBottomRight" type="Area2D" parent="ShadowCheckingAreas"]
 position = Vector2(24, 43)
 collision_layer = 16384
-metadata/_edit_lock_ = true
 
 [node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaBottomRight"]
 shape = SubResource("RectangleShape2D_fxoem")
@@ -52,7 +50,6 @@ metadata/_edit_lock_ = true
 [node name="ShadowCheckAreaTopLeft" type="Area2D" parent="ShadowCheckingAreas"]
 position = Vector2(-24, -43)
 collision_layer = 16384
-metadata/_edit_lock_ = true
 
 [node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaTopLeft"]
 shape = SubResource("RectangleShape2D_fxoem")
@@ -61,7 +58,6 @@ metadata/_edit_lock_ = true
 [node name="ShadowCheckAreaTopRight" type="Area2D" parent="ShadowCheckingAreas"]
 position = Vector2(24, -43)
 collision_layer = 16384
-metadata/_edit_lock_ = true
 
 [node name="ShadowCheckShape" type="CollisionShape2D" parent="ShadowCheckingAreas/ShadowCheckAreaTopRight"]
 shape = SubResource("RectangleShape2D_fxoem")

@@ -19,6 +19,7 @@ bg_color = Color(0, 0, 0, 0)
 script = ExtResource("1_w3jr3")
 
 [node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Panel" type="Panel" parent="PauseMenuCanvasLayer"]
 anchors_preset = 15

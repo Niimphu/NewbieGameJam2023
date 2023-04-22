@@ -1,6 +1,6 @@
 extends Node2D
 
-const SHADOW_SHAPE_CAST_DISTANCE: int = 300
+const SHADOW_SHAPE_CAST_DISTANCE: int = 1000
 
 var light_occluders: Array[LightOccluder2D]
 var shadow_shape_casts: Array[ShapeCast2D]

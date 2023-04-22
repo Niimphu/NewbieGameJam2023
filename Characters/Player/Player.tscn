@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=9 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="Texture2D" uid="uid://baxai2pm6non2" path="res://Textures/16x16_white.png" id="1_l7vhe"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
+[ext_resource type="PackedScene" uid="uid://cs055uggajtfv" path="res://Characters/Player/PauseManager.tscn" id="2_vbasy"]
 [ext_resource type="SpriteFrames" uid="uid://qaknhgla8llv" path="res://Characters/Player/Parasol/ParasolAnimationFrames.tres" id="3_80ogd"]
 [ext_resource type="Script" path="res://Characters/Player/Parasol/Parasol.gd" id="4_c045m"]
 
@@ -16,9 +17,12 @@ size = Vector2(2, 10)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cg0yb")
 
+[node name="PauseManager" parent="." instance=ExtResource("2_vbasy")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("2_tgliu")]
+mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 1, 1)

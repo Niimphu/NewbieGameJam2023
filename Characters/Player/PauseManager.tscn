@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs055uggajtfv"]
+
+[ext_resource type="Script" path="res://Characters/Player/PauseManager.gd" id="1_w3jr3"]
+[ext_resource type="FontFile" uid="uid://des3l0wh7m5k0" path="res://Fonts/viper_nora.otf" id="2_o240o"]
+[ext_resource type="PackedScene" uid="uid://bhcyxtbye085p" path="res://Characters/Player/UI/OptionsButton.tscn" id="3_yctbn"]
+[ext_resource type="PackedScene" uid="uid://64y6054y23bj" path="res://Characters/Player/UI/HelpButton.tscn" id="4_nbevj"]
+[ext_resource type="PackedScene" uid="uid://e4etr2qk44lv" path="res://Characters/Player/UI/ExitButton.tscn" id="5_xki3h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oexij"]
+bg_color = Color(0.34902, 0.243137, 0.278431, 0.313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgek1"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6wg5"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="PauseManager" type="Node2D"]
+script = ExtResource("1_w3jr3")
+
+[node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="PauseMenuCanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oexij")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuCanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator_100px_Invisible_1" type="HSeparator" parent="PauseMenuCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+theme_override_styles/separator = SubResource("StyleBoxFlat_bgek1")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="PauseMenuCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.709804, 0.34902, 0.270588, 1)
+theme_override_fonts/font = ExtResource("2_o240o")
+theme_override_font_sizes/font_size = 72
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="HSeparator_100px_Invisible_2" type="HSeparator" parent="PauseMenuCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+theme_override_styles/separator = SubResource("StyleBoxFlat_bgek1")
+metadata/_edit_lock_ = true
+
+[node name="OptionsButton" parent="PauseMenuCanvasLayer/Panel/VBoxContainer" instance=ExtResource("3_yctbn")]
+layout_mode = 2
+
+[node name="HSeparator_25px_Invisible_2" type="HSeparator" parent="PauseMenuCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+theme_override_styles/separator = SubResource("StyleBoxFlat_j6wg5")
+metadata/_edit_lock_ = true
+
+[node name="HelpButton" parent="PauseMenuCanvasLayer/Panel/VBoxContainer" instance=ExtResource("4_nbevj")]
+layout_mode = 2
+
+[node name="HSeparator_25px_Invisible_3" type="HSeparator" parent="PauseMenuCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+theme_override_styles/separator = SubResource("StyleBoxFlat_j6wg5")
+metadata/_edit_lock_ = true
+
+[node name="ExitButton" parent="PauseMenuCanvasLayer/Panel/VBoxContainer" instance=ExtResource("5_xki3h")]
+layout_mode = 2

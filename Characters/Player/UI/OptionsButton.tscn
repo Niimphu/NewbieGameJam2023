@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhcyxtbye085p"]
+
+[ext_resource type="FontFile" uid="uid://des3l0wh7m5k0" path="res://Fonts/viper_nora.otf" id="1_6qmv2"]
+[ext_resource type="StyleBox" uid="uid://cu4a25ar70b7a" path="res://Levels/MainMenu/Styles/MainMenuButtonStyleNormal.tres" id="2_0dx7p"]
+[ext_resource type="StyleBox" uid="uid://dxu573bff5t1s" path="res://Levels/MainMenu/Styles/MainMenuButtonStylePressed.tres" id="3_vtyuy"]
+[ext_resource type="StyleBox" uid="uid://cf42ygv275jav" path="res://Levels/MainMenu/Styles/MainMenuButtonStyleFocus.tres" id="4_sg8d2"]
+
+[node name="OptionsButton" type="Button"]
+custom_minimum_size = Vector2(300, 0)
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.870588, 0.623529, 0.278431, 1)
+theme_override_fonts/font = ExtResource("1_6qmv2")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("2_0dx7p")
+theme_override_styles/hover = ExtResource("2_0dx7p")
+theme_override_styles/pressed = ExtResource("3_vtyuy")
+theme_override_styles/focus = ExtResource("4_sg8d2")
+text = "Options"
+metadata/_edit_lock_ = true

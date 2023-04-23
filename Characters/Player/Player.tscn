@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
-[ext_resource type="Texture2D" uid="uid://baxai2pm6non2" path="res://Textures/16x16_white.png" id="1_l7vhe"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
 [ext_resource type="PackedScene" uid="uid://cs055uggajtfv" path="res://Characters/Player/PauseManager.tscn" id="2_vbasy"]
 [ext_resource type="SpriteFrames" uid="uid://qaknhgla8llv" path="res://Characters/Player/Parasol/ParasolAnimationFrames.tres" id="3_80ogd"]
 [ext_resource type="Script" path="res://Characters/Player/Parasol/Parasol.gd" id="4_c045m"]
+[ext_resource type="Texture2D" uid="uid://ddvg0puekq4el" path="res://Characters/Player/Spritesheet_player.png" id="6_lxn1d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vmqq7"]
 radius = 24.0
@@ -25,12 +25,6 @@ ACCELERATION = 40.0
 
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("2_tgliu")]
 mouse_filter = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 1, 1)
-light_mask = 2
-scale = Vector2(3, 6)
-texture = ExtResource("1_l7vhe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_vmqq7")
@@ -70,10 +64,20 @@ shape = SubResource("RectangleShape2D_fxoem")
 metadata/_edit_lock_ = true
 
 [node name="Parasol" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -48)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("3_80ogd")
 animation = &"open_close"
 script = ExtResource("4_c045m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+position = Vector2(0, 33)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_lxn1d")
+offset = Vector2(100, -200)
+hframes = 6
+vframes = 6
 
 [connection signal="animation_finished" from="Parasol" to="Parasol" method="_on_animation_finished"]

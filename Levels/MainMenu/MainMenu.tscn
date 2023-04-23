@@ -71,6 +71,10 @@ metadata/_edit_lock_ = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../ExitButton")
 theme_override_colors/font_color = Color(0.870588, 0.623529, 0.278431, 1)
 theme_override_fonts/font = ExtResource("2_qnhm7")
 theme_override_font_sizes/font_size = 36
@@ -90,6 +94,10 @@ metadata/_edit_lock_ = true
 
 [node name="OptionsButton" parent="VBoxContainer" instance=ExtResource("6_o7yp2")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../HelpButton")
+focus_next = NodePath("../HelpButton")
+focus_previous = NodePath("../PlayButton")
 
 [node name="HSeparator_25px_Invisible_2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -99,6 +107,10 @@ metadata/_edit_lock_ = true
 
 [node name="HelpButton" parent="VBoxContainer" instance=ExtResource("7_kbswv")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+focus_next = NodePath("../ExitButton")
+focus_previous = NodePath("../OptionsButton")
 
 [node name="HSeparator_25px_Invisible_3" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -108,5 +120,9 @@ metadata/_edit_lock_ = true
 
 [node name="ExitButton" parent="VBoxContainer" instance=ExtResource("8_txrn4")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../HelpButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../HelpButton")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="VBoxContainer/PlayButton" method="_on_pressed"]

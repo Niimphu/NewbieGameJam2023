@@ -16,6 +16,8 @@ size = Vector2(2, 10)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cg0yb")
+DECELERATION = 30.0
+ACCELERATION = 40.0
 
 [node name="PauseManager" parent="." instance=ExtResource("2_vbasy")]
 

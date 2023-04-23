@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cskjxmhmjrswh"]
+[gd_scene load_steps=7 format=3 uid="uid://cskjxmhmjrswh"]
 
 [ext_resource type="Texture2D" uid="uid://b8xbomv1ds6be" path="res://Textures/Free assets/Tileset_pack/Dirt_tileset.png" id="1_1hkyh"]
 [ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="2_ddsjf"]
 [ext_resource type="Script" path="res://Levels/CloudsTutorial.gd" id="2_g5xe7"]
+[ext_resource type="PackedScene" uid="uid://hd6fgpjdfvvd" path="res://Characters/WanderingEnemy/WanderingEnemy.tscn" id="4_lhecm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4iv5m"]
 texture = ExtResource("1_1hkyh")
@@ -588,3 +589,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="WanderingEnemy" parent="." instance=ExtResource("4_lhecm")]
+position = Vector2(844, 501)

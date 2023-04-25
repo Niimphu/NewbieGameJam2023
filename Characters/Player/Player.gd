@@ -15,6 +15,9 @@ extends CharacterBody2D
 # so that it will stay within the CollisionShape2D.
 var sprite_scale_x: float
 
+
+var current_animation_state: StringName
+
 # This enum represents the different possible states of the Parasol animation
 enum PARASOL_STATES {
 	CLOSED = -1,
@@ -34,6 +37,7 @@ var direction = Vector2.ZERO
 func _ready():
 	update_animation_tree_blend_positions()
 	animation_state.start("Start")
+	animation_state.travel("Idle")
 	sprite_scale_x = sprite.scale.x
 
 func _physics_process(delta):
@@ -41,13 +45,18 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if Input.is_action_just_pressed("toggle_parasol") and parasol_cooldown.is_stopped():
+	current_animation_state = animation_state.get_current_node()
+
+	if Input.is_action_just_pressed("toggle_parasol") and current_animation_state == "Idle":
 		match parasol_state:
 			PARASOL_STATES.CLOSED:
-				parasol_cooldown.start()
-				parasol_state = PARASOL_STATES.OPENING
-			PARASOL_STATES.OPEN:		
-				parasol_cooldown.start()
+				animation_state.travel("open_parasol")
+				parasol_state = PARASOL_STATES.OPEN
+			PARASOL_STATES.OPEN:
+				animation_state.travel("close_parasol")
+				parasol_state = PARASOL_STATES.CLOSED
+		
+		update_animation_tree_blend_positions()
 	elif Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	elif Input.is_action_pressed("attack") and attack_cooldown.is_stopped() and parasol_state == PARASOL_STATES.CLOSED:
@@ -68,9 +77,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 func update_animation():
-	if is_equal_approx(direction.x, 0.0):
+	if is_equal_approx(direction.x, 0.0) and current_animation_state == "Run":
 		animation_state.travel("Idle")
-	else:
+	elif direction.x != 0.0 and current_animation_state == "Idle":
 		animation_state.travel("Run")
 
 func update_direction():

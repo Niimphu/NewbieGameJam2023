@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=40 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
@@ -295,22 +295,44 @@ blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_ryx6e")
 blend_point_1/pos = 1.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yhxf4"]
+animation = &"close_parasol"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mhf0t"]
+animation = &"open_parasol"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cv0ju"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ysff"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mooda"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fxpy4"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4sja"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ogllg"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_34wuy"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b07rd"]
 states/End/position = Vector2(913, 9)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_r6whx")
 states/Idle/position = Vector2(426, -63)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_2s24w")
-states/Run/position = Vector2(611, -63)
-states/Start/position = Vector2(222, 9)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cv0ju"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda")]
-graph_offset = Vector2(121, -150)
+states/Run/position = Vector2(426, -155)
+states/Start/position = Vector2(215, -63)
+states/close_parasol/node = SubResource("AnimationNodeAnimation_yhxf4")
+states/close_parasol/position = Vector2(287, 32)
+states/open_parasol/node = SubResource("AnimationNodeAnimation_mhf0t")
+states/open_parasol/position = Vector2(579, 32)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cv0ju"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "open_parasol", SubResource("AnimationNodeStateMachineTransition_fxpy4"), "open_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_g4sja"), "close_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_ogllg"), "Idle", "close_parasol", SubResource("AnimationNodeStateMachineTransition_34wuy")]
+graph_offset = Vector2(111, -163)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 

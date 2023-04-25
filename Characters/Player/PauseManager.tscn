@@ -20,6 +20,7 @@ script = ExtResource("1_w3jr3")
 
 [node name="PauseMenuCanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="Panel" type="Panel" parent="PauseMenuCanvasLayer"]
 anchors_preset = 15
@@ -37,6 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="HSeparator_100px_Invisible_1" type="HSeparator" parent="PauseMenuCanvasLayer/Panel/VBoxContainer"]
 layout_mode = 2
@@ -51,6 +53,7 @@ theme_override_fonts/font = ExtResource("2_o240o")
 theme_override_font_sizes/font_size = 72
 text = "PAUSED"
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="HSeparator_100px_Invisible_2" type="HSeparator" parent="PauseMenuCanvasLayer/Panel/VBoxContainer"]
 layout_mode = 2

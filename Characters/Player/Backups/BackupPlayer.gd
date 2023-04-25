@@ -12,52 +12,52 @@ extends CharacterBody2D
 @onready var attack_cooldown: Timer = $AttackCooldown
 
 # The initial x scale of the sprite to be used to flip the sprite and preserve its position
-# so that it will stay within the CollisionShape2D.
 var sprite_scale_x: float
 
-# This enum represents the different possible states of the Parasol animation
 enum {
-	PARASOL_STATE_CLOSED = -1,
-	PARASOL_STATE_OPENING = 0,
-	PARASOL_STATE_OPEN = 1
+	CLOSED,
+	OPENING,
+	OPEN
 }
 
-var parasol_state = PARASOL_STATE_CLOSED
-#var parasol_gravity_modifier: float = 1 #currently not working??
+var parasol_state = CLOSED
+var parasol_gravity_modifier: float = 1 #currently not working??
 
 var is_attacking = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")# * parasol_gravity_modifier
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * parasol_gravity_modifier
 var direction = Vector2.ZERO
 
 func _ready():
-	animation_tree.set("parameters/Idle/blend_position", PARASOL_STATE_CLOSED)
-	animation_tree.set("parameters/Run/blend_position", PARASOL_STATE_CLOSED)
-	animation_state.start("Start")
+	animation_tree.active = true
+	animation_state.travel("move_closed")
 	sprite_scale_x = sprite.scale.x
 
 func _physics_process(delta):
+	match parasol_state:
+		CLOSED:
+			parasol_gravity_modifier = 1
+			if Input.is_action_just_pressed("toggle_parasol") and parasol_cooldown.is_stopped():
+				parasol_cooldown.start()
+				parasol_state = OPENING
+		OPEN:
+			parasol_gravity_modifier = 0.3			
+			if Input.is_action_just_pressed("toggle_parasol") and parasol_cooldown.is_stopped():
+				parasol_cooldown.start()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-	if Input.is_action_just_pressed("toggle_parasol") and parasol_cooldown.is_stopped():
-		match parasol_state:
-			PARASOL_STATE_CLOSED:
-				parasol_cooldown.start()
-				parasol_state = PARASOL_STATE_OPENING
-			PARASOL_STATE_OPEN:		
-				parasol_cooldown.start()
-	elif Input.is_action_just_pressed("jump") and is_on_floor():
+	# Handle Jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	elif Input.is_action_pressed("attack") and attack_cooldown.is_stopped() and parasol_state == PARASOL_STATE_CLOSED:
-		attack_cooldown.start()
-		MAX_WALK_VELOCITY *= 0.5
-
 	# Get the input direction and handle the movement/deceleration.
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+
+	if Input.is_action_pressed("attack") and attack_cooldown.is_stopped() and parasol_state == CLOSED:
+		attack_cooldown.start()
+		MAX_WALK_VELOCITY *= 0.5
 
 	if direction:
 		velocity.x = clamp(velocity.x + (direction.x * ACCELERATION), -MAX_WALK_VELOCITY, MAX_WALK_VELOCITY)
@@ -69,10 +69,23 @@ func _physics_process(delta):
 	move_and_slide()
 
 func update_animation():
-	if is_equal_approx(direction.x, 0.0):
-		animation_state.travel("Idle")
-	else:
-		animation_state.travel("Run")
+	var state
+
+	if parasol_state == CLOSED:
+		state = "closed"
+	elif parasol_state == OPEN or parasol_state == OPENING:
+		state = "open"
+	animation_tree.set("parameters/jump_" + state + "/blend_position", velocity.y)
+	animation_tree.set("parameters/move_" + state + "/blend_position", direction.x)
+	animation_tree.set("parameters/attack/blend_position", direction)
+
+	if Input.is_action_pressed("attack") and is_attacking == false and state == "closed":
+		animation_state.travel("attack")
+		is_attacking = true
+	elif not is_on_floor() && attack_cooldown.is_stopped():
+		animation_state.travel("jump_" + state)
+	elif  attack_cooldown.is_stopped():
+		animation_state.travel("move_" + state)
 
 func update_direction():
 	if direction.x < 0:
@@ -84,9 +97,9 @@ func _on_attack_cooldown_timeout():
 	is_attacking = false
 	MAX_WALK_VELOCITY *= 2
 
+
 func _on_parasol_cooldown_timeout():
-	match parasol_state:
-		PARASOL_STATE_OPENING:
-			parasol_state = PARASOL_STATE_OPEN
-		PARASOL_STATE_OPEN:
-			parasol_state = PARASOL_STATE_CLOSED
+	if parasol_state == OPENING:
+		parasol_state = OPEN
+	elif parasol_state == OPEN:
+		parasol_state = CLOSED

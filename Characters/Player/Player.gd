@@ -67,7 +67,7 @@ func _physics_process(delta):
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 
-	if direction:
+	if direction.x:
 		velocity.x = clamp(velocity.x + (direction.x * ACCELERATION), -MAX_WALK_VELOCITY, MAX_WALK_VELOCITY)
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)

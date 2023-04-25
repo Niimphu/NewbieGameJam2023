@@ -35,8 +35,8 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_ebm7w")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_40j6j")
 blend_point_3/pos = Vector2(-1, 0)
-min_space = Vector2(-1, -1.1)
-max_space = Vector2(1, 1.1)
+min_space = Vector2(-1.1, -1.1)
+max_space = Vector2(1.1, 1.1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iqm0p"]
@@ -159,7 +159,7 @@ states/move_open/position = Vector2(274.755, 279)
 states/open_parasol/node = SubResource("AnimationNodeAnimation_45enj")
 states/open_parasol/position = Vector2(274.755, 201.21)
 transitions = ["Start", "move_closed", SubResource("AnimationNodeStateMachineTransition_y3v8i"), "move_closed", "jump_closed", SubResource("AnimationNodeStateMachineTransition_rj17w"), "jump_closed", "move_closed", SubResource("AnimationNodeStateMachineTransition_stn8e"), "move_open", "jump_open", SubResource("AnimationNodeStateMachineTransition_a6mq8"), "jump_open", "move_open", SubResource("AnimationNodeStateMachineTransition_1fp3s"), "move_closed", "open_parasol", SubResource("AnimationNodeStateMachineTransition_0q7sy"), "move_open", "close_parasol", SubResource("AnimationNodeStateMachineTransition_88kw7"), "open_parasol", "move_open", SubResource("AnimationNodeStateMachineTransition_7dios"), "close_parasol", "move_closed", SubResource("AnimationNodeStateMachineTransition_67aeb"), "jump_closed", "open_parasol", SubResource("AnimationNodeStateMachineTransition_3b0t5"), "jump_open", "close_parasol", SubResource("AnimationNodeStateMachineTransition_hhyg0"), "move_closed", "attack", SubResource("AnimationNodeStateMachineTransition_6jki4"), "jump_closed", "attack", SubResource("AnimationNodeStateMachineTransition_w2mn1"), "attack", "move_closed", SubResource("AnimationNodeStateMachineTransition_be77o")]
-graph_offset = Vector2(-182.277, 69.1471)
+graph_offset = Vector2(-182.277, 25.0535)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_214ir"]
 

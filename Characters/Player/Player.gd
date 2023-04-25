@@ -73,6 +73,8 @@ func update_animation():
 		state = "open"
 	animation_tree.set("parameters/jump_" + state + "/blend_position", velocity.y)
 	animation_tree.set("parameters/move_" + state + "/blend_position", direction.x)
+	if abs(direction.y) == abs(direction.x):
+		direction.y *= 1.2
 	animation_tree.set("parameters/attack/blend_position", direction)
 
 	if Input.is_action_pressed("attack") and is_attacking == false and state == "closed":

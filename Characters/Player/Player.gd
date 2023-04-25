@@ -16,13 +16,13 @@ extends CharacterBody2D
 var sprite_scale_x: float
 
 # This enum represents the different possible states of the Parasol animation
-enum {
-	PARASOL_STATE_CLOSED = -1,
-	PARASOL_STATE_OPENING = 0,
-	PARASOL_STATE_OPEN = 1
+enum PARASOL_STATES {
+	CLOSED = -1,
+	OPENING = 0,
+	OPEN = 1
 }
 
-var parasol_state = PARASOL_STATE_CLOSED
+var parasol_state = PARASOL_STATES.CLOSED
 #var parasol_gravity_modifier: float = 1 #currently not working??
 
 var is_attacking = false
@@ -32,8 +32,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")# * paras
 var direction = Vector2.ZERO
 
 func _ready():
-	animation_tree.set("parameters/Idle/blend_position", PARASOL_STATE_CLOSED)
-	animation_tree.set("parameters/Run/blend_position", PARASOL_STATE_CLOSED)
+	update_animation_tree_blend_positions()
 	animation_state.start("Start")
 	sprite_scale_x = sprite.scale.x
 
@@ -44,14 +43,14 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("toggle_parasol") and parasol_cooldown.is_stopped():
 		match parasol_state:
-			PARASOL_STATE_CLOSED:
+			PARASOL_STATES.CLOSED:
 				parasol_cooldown.start()
-				parasol_state = PARASOL_STATE_OPENING
-			PARASOL_STATE_OPEN:		
+				parasol_state = PARASOL_STATES.OPENING
+			PARASOL_STATES.OPEN:		
 				parasol_cooldown.start()
 	elif Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	elif Input.is_action_pressed("attack") and attack_cooldown.is_stopped() and parasol_state == PARASOL_STATE_CLOSED:
+	elif Input.is_action_pressed("attack") and attack_cooldown.is_stopped() and parasol_state == PARASOL_STATES.CLOSED:
 		attack_cooldown.start()
 		MAX_WALK_VELOCITY *= 0.5
 
@@ -86,7 +85,11 @@ func _on_attack_cooldown_timeout():
 
 func _on_parasol_cooldown_timeout():
 	match parasol_state:
-		PARASOL_STATE_OPENING:
-			parasol_state = PARASOL_STATE_OPEN
-		PARASOL_STATE_OPEN:
-			parasol_state = PARASOL_STATE_CLOSED
+		PARASOL_STATES.OPENING:
+			parasol_state = PARASOL_STATES.OPEN
+		PARASOL_STATES.OPEN:
+			parasol_state = PARASOL_STATES.CLOSED
+
+func update_animation_tree_blend_positions():
+	animation_tree.set("parameters/Idle/blend_position", parasol_state)
+	animation_tree.set("parameters/Run/blend_position", parasol_state)

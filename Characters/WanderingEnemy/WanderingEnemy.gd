@@ -30,6 +30,8 @@ const MIN_WANDER_DURATION_SECONDS: float = 1.0
 ## The maximum number of seconds that the enemy can wander before it stops wandering.
 @export_range(MIN_WANDER_DURATION_SECONDS, 10) var MAX_WANDER_DURATION_SECONDS: float = 5.0
 
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 var home_position: Vector2
 var is_wandering: bool = false
 var current_wander_check_seconds: float
@@ -67,6 +69,7 @@ func _process(delta):
 	
 	if not is_wandering:
 		# The enemy decided to be lazy and stand around.
+		
 		return
 	
 	# The enemy decided to wander so we need to generate a random number of seconds for it to wander before it decides to stop.
@@ -89,4 +92,15 @@ func _physics_process(delta):
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
 
+	if velocity:
+		animated_sprite.play()
+	else:
+		animated_sprite.pause()
+
 	move_and_slide()
+	update_rotation()
+	
+func update_rotation():
+	if is_on_floor():
+		var normal: Vector2 = get_floor_normal() #match angle of sprite to angle of floor
+		animated_sprite.rotation = normal.angle() + 1.571 #this is 90 degrees in rads

@@ -332,7 +332,7 @@ states/close_parasol/position = Vector2(287, 32)
 states/open_parasol/node = SubResource("AnimationNodeAnimation_mhf0t")
 states/open_parasol/position = Vector2(579, 32)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cv0ju"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "open_parasol", SubResource("AnimationNodeStateMachineTransition_fxpy4"), "open_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_g4sja"), "close_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_ogllg"), "Idle", "close_parasol", SubResource("AnimationNodeStateMachineTransition_34wuy")]
-graph_offset = Vector2(111, -163)
+graph_offset = Vector2(111, -195.146)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 

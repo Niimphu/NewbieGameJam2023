@@ -1,10 +1,8 @@
-[gd_scene load_steps=40 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=55 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
 [ext_resource type="PackedScene" uid="uid://cs055uggajtfv" path="res://Characters/Player/PauseManager.tscn" id="2_vbasy"]
-[ext_resource type="SpriteFrames" uid="uid://qaknhgla8llv" path="res://Characters/Player/Parasol/ParasolAnimationFrames.tres" id="3_80ogd"]
-[ext_resource type="Script" path="res://Characters/Player/Parasol/Parasol.gd" id="4_c045m"]
 [ext_resource type="Texture2D" uid="uid://ddvg0puekq4el" path="res://Characters/Player/Spritesheet_player.png" id="6_lxn1d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vmqq7"]
@@ -270,6 +268,36 @@ _data = {
 "run_open": SubResource("Animation_kidxk")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4osr"]
+animation = &"attack_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nr4iv"]
+animation = &"attack_front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eybmp"]
+animation = &"attack_up"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_4g6e6"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_r4osr")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_nr4iv")
+blend_point_1/pos = 0.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_eybmp")
+blend_point_2/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1vy24"]
+animation = &"fall_closed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_unh5l"]
+animation = &"fall_open"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_yvjbd"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_1vy24")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_unh5l")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pytcu"]
 animation = &"idle_closed"
 
@@ -280,6 +308,19 @@ animation = &"idle_open"
 blend_point_0/node = SubResource("AnimationNodeAnimation_pytcu")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_maeej")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_poh6a"]
+animation = &"jump_closed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gmbut"]
+animation = &"jump_open"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_r8nft"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_poh6a")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_gmbut")
 blend_point_1/pos = 1.0
 blend_mode = 1
 
@@ -294,6 +335,7 @@ blend_point_0/node = SubResource("AnimationNodeAnimation_g45qi")
 blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_ryx6e")
 blend_point_1/pos = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yhxf4"]
 animation = &"close_parasol"
@@ -301,14 +343,11 @@ animation = &"close_parasol"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mhf0t"]
 animation = &"open_parasol"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cv0ju"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ysff"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mooda"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fxpy4"]
-advance_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4sja"]
 switch_mode = 2
@@ -320,19 +359,45 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_34wuy"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r0e8g"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3oko5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b3vxp"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ihrhg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1rbnr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6qm47"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vqi8i"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8djce"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b07rd"]
-states/End/position = Vector2(913, 9)
+states/Attack/node = SubResource("AnimationNodeBlendSpace1D_4g6e6")
+states/Attack/position = Vector2(269, -198)
+states/End/position = Vector2(426, 270)
+states/Fall/node = SubResource("AnimationNodeBlendSpace1D_yvjbd")
+states/Fall/position = Vector2(579, -63)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_r6whx")
 states/Idle/position = Vector2(426, -63)
+states/Jump/node = SubResource("AnimationNodeBlendSpace1D_r8nft")
+states/Jump/position = Vector2(579, -198)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_2s24w")
-states/Run/position = Vector2(426, -155)
-states/Start/position = Vector2(215, -63)
+states/Run/position = Vector2(426, -305)
+states/Start/position = Vector2(426, 215)
 states/close_parasol/node = SubResource("AnimationNodeAnimation_yhxf4")
-states/close_parasol/position = Vector2(287, 32)
+states/close_parasol/position = Vector2(269, 90)
 states/open_parasol/node = SubResource("AnimationNodeAnimation_mhf0t")
-states/open_parasol/position = Vector2(579, 32)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cv0ju"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "open_parasol", SubResource("AnimationNodeStateMachineTransition_fxpy4"), "open_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_g4sja"), "close_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_ogllg"), "Idle", "close_parasol", SubResource("AnimationNodeStateMachineTransition_34wuy")]
-graph_offset = Vector2(111, -195.146)
+states/open_parasol/position = Vector2(579, 90)
+transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "open_parasol", SubResource("AnimationNodeStateMachineTransition_fxpy4"), "open_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_g4sja"), "close_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_ogllg"), "Idle", "close_parasol", SubResource("AnimationNodeStateMachineTransition_34wuy"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_r0e8g"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_3oko5"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_b3vxp"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_ihrhg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_1rbnr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6qm47"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_vqi8i"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8djce")]
+graph_offset = Vector2(9, -408.146)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 
@@ -347,18 +412,6 @@ ACCELERATION = 40.0
 
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("2_tgliu")]
 mouse_filter = 2
-
-[node name="Parasol" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(0, -48)
-scale = Vector2(1.5, 1.5)
-sprite_frames = ExtResource("3_80ogd")
-animation = &"open_close"
-script = ExtResource("4_c045m")
-
-[node name="ParasolCooldown" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.6
@@ -387,9 +440,10 @@ tree_root = SubResource("AnimationNodeStateMachine_b07rd")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_wtqe7")
-parameters/Idle/blend_position = -0.00114548
-parameters/Run/blend_position = -0.986254
+parameters/Attack/blend_position = 0
+parameters/Fall/blend_position = 0
+parameters/Idle/blend_position = null
+parameters/Jump/blend_position = null
+parameters/Run/blend_position = null
 
-[connection signal="animation_finished" from="Parasol" to="Parasol" method="_on_animation_finished"]
-[connection signal="timeout" from="ParasolCooldown" to="." method="_on_parasol_cooldown_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

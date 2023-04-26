@@ -160,7 +160,7 @@ states/move_open/position = Vector2(274.755, 279)
 states/open_parasol/node = SubResource("AnimationNodeAnimation_45enj")
 states/open_parasol/position = Vector2(274.755, 201.21)
 transitions = ["Start", "move_closed", SubResource("AnimationNodeStateMachineTransition_y3v8i"), "move_closed", "jump_closed", SubResource("AnimationNodeStateMachineTransition_rj17w"), "jump_closed", "move_closed", SubResource("AnimationNodeStateMachineTransition_stn8e"), "move_open", "jump_open", SubResource("AnimationNodeStateMachineTransition_a6mq8"), "jump_open", "move_open", SubResource("AnimationNodeStateMachineTransition_1fp3s"), "move_closed", "open_parasol", SubResource("AnimationNodeStateMachineTransition_0q7sy"), "move_open", "close_parasol", SubResource("AnimationNodeStateMachineTransition_88kw7"), "open_parasol", "move_open", SubResource("AnimationNodeStateMachineTransition_7dios"), "close_parasol", "move_closed", SubResource("AnimationNodeStateMachineTransition_67aeb"), "jump_closed", "open_parasol", SubResource("AnimationNodeStateMachineTransition_3b0t5"), "jump_open", "close_parasol", SubResource("AnimationNodeStateMachineTransition_hhyg0"), "move_closed", "attack", SubResource("AnimationNodeStateMachineTransition_6jki4"), "jump_closed", "attack", SubResource("AnimationNodeStateMachineTransition_w2mn1"), "attack", "move_closed", SubResource("AnimationNodeStateMachineTransition_be77o")]
-graph_offset = Vector2(-58.277, 17.7319)
+graph_offset = Vector2(-37.277, -59.2681)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_214ir"]
 
@@ -464,7 +464,7 @@ vframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_vmqq7")
 
-[node name="OldAnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_ntcgc")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_214ir")

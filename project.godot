@@ -124,9 +124,10 @@ attack_modifier_down={
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"
+2d_physics/layer_4="PhysicsObjects"
 2d_physics/layer_15="PlayerShadowDetectionArea"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.356863, 0.45098, 0.564706, 1)
+environment/defaults/default_clear_color=Color(0.772549, 0.815686, 0.807843, 1)

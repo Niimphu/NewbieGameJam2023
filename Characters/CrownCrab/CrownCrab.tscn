@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck0y1md12vgj0"]
+
+[ext_resource type="Script" path="res://Characters/CrownCrab/CrownCrab.gd" id="1_jyo78"]
+[ext_resource type="Texture2D" uid="uid://bxl33vkk7k3s4" path="res://Characters/CrownCrab/Sprite1.PNG" id="2_wvoe0"]
+[ext_resource type="Texture2D" uid="uid://2qjhuq54kx4l" path="res://Characters/CrownCrab/Sprite2.PNG" id="3_g3p7g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_viq0y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wvoe0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g3p7g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hphii"]
+radius = 9.0
+
+[node name="WanderingEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_jyo78")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_viq0y")
+autoplay = "default"
+frame = 1
+frame_progress = 0.735729
+offset = Vector2(0, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_hphii")
+metadata/_edit_lock_ = true

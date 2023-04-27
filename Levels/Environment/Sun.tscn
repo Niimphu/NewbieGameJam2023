@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://denmcawtlettb"]
+
+[node name="Sun" type="DirectionalLight2D" groups=["sun"]]
+position = Vector2(1009, 63)
+rotation = 0.261799
+color = Color(1, 0.662745, 0.278431, 1)
+shadow_enabled = true
+shadow_color = Color(0.560784, 0.298039, 0.054902, 0.168627)
+metadata/_edit_lock_ = true

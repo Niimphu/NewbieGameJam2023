@@ -4,4 +4,4 @@ func _ready():
 	grab_focus()
 
 func _on_pressed():
-	get_tree().change_scene_to_file("res://Levels/Tutorial.tscn")
+	get_tree().change_scene_to_file("res://Levels/Tutorial/Tutorial.tscn")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cskjxmhmjrswh"]
+[gd_scene load_steps=4 format=3 uid="uid://cymylbebni25r"]
 
 [ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="2_ddsjf"]
 [ext_resource type="Script" path="res://Levels/CloudsTutorial.gd" id="2_g5xe7"]
-[ext_resource type="PackedScene" uid="uid://hd6fgpjdfvvd" path="res://Characters/WanderingEnemy/WanderingEnemy.tscn" id="4_lhecm"]
+[ext_resource type="PackedScene" uid="uid://ck0y1md12vgj0" path="res://Characters/CrownCrab/CrownCrab.tscn" id="4_lhecm"]
 
 [node name="Tutorial" type="Node2D"]
 
@@ -54,7 +54,6 @@ position = Vector2(189, 429)
 collision_layer = 2
 floor_stop_on_slope = false
 floor_max_angle = 0.872665
-JUMP_VELOCITY = -500.0
 MAX_WALK_VELOCITY = 350.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]

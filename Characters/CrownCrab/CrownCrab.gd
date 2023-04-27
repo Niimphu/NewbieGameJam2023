@@ -14,7 +14,7 @@ const MIN_WANDER_DURATION_SECONDS: float = 1.0
 @export var ACCELERATION: float = 30.0
 
 ## The maximum velocity the enemy can accelerate to while wandering.
-@export var MAX_WANDER_VELOCITY: float = 200.0
+@export var MAX_WANDER_VELOCITY: float = 100.0
 
 @export_subgroup("Wander Behavior")
 
@@ -22,7 +22,7 @@ const MIN_WANDER_DURATION_SECONDS: float = 1.0
 @export_range(0, 100) var WANDER_CHANCE_PECENTAGE: int = 80
 
 ## The distance threshold (in pixels) when the enemy will decide to turn back and head toward its home location when it wanders next.
-@export var MAX_WANDER_DISTANCE: float = 300.0
+@export var MAX_WANDER_DISTANCE: float = 200.0
 
 ## The number of seconds between each wander check. Wander checks are only performed while the enemy is not currently wandering.
 @export var WANDER_CHECK_SECONDS: float = 2.0

@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@export var DECELERATION: float = 20.0
-@export var ACCELERATION: float = 30.0
-@export var JUMP_VELOCITY: float = -600.0
-@export var MAX_WALK_VELOCITY: float = 280.0
+@export var DECELERATION: float = 30.0
+@export var ACCELERATION: float = 40.0
+@export var JUMP_VELOCITY: float = -460.0
+@export var MAX_WALK_VELOCITY: float = 250.0
 @export var PARASOL_GRAVITY_MODIFIER: float = 0.3
 
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -53,7 +53,8 @@ func _physics_process(delta):
 
 	update_current_attack_direction_state()
 
-	if Input.is_action_just_pressed("toggle_parasol") and current_animation_state == "Idle":
+	if Input.is_action_just_pressed("toggle_parasol") and \
+		current_animation_state != "open_parasol" and current_animation_state != "close_parasol":
 		change_parasol_state()
 		update_parasol_animation_blend_positions()
 	elif Input.is_action_just_pressed("jump") and is_on_floor() and (current_animation_state == "Idle" or current_animation_state == "Run"):
@@ -67,7 +68,9 @@ func _physics_process(delta):
 	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 
 	if direction.x:
-		velocity.x = clamp(velocity.x + (direction.x * ACCELERATION), -MAX_WALK_VELOCITY, MAX_WALK_VELOCITY)
+		velocity.x = clampf(velocity.x + (direction.x * ACCELERATION), -MAX_WALK_VELOCITY, MAX_WALK_VELOCITY)
+		#velocity.x = velocity.x + (direction.x * ACCELERATION)
+		print("velocity.x = ", velocity.x)
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
 

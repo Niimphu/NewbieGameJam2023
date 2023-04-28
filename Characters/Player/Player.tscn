@@ -397,7 +397,7 @@ states/close_parasol/position = Vector2(269, 90)
 states/open_parasol/node = SubResource("AnimationNodeAnimation_mhf0t")
 states/open_parasol/position = Vector2(579, 90)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "open_parasol", SubResource("AnimationNodeStateMachineTransition_fxpy4"), "open_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_g4sja"), "close_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_ogllg"), "Idle", "close_parasol", SubResource("AnimationNodeStateMachineTransition_34wuy"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_r0e8g"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_3oko5"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_b3vxp"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_ihrhg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_1rbnr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6qm47"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_vqi8i"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8djce")]
-graph_offset = Vector2(9, -408.146)
+graph_offset = Vector2(9, -120.236)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 
@@ -407,10 +407,6 @@ collision_layer = 2
 collision_mask = 13
 floor_snap_length = 4.0
 script = ExtResource("1_cg0yb")
-DECELERATION = 30.0
-ACCELERATION = 40.0
-JUMP_VELOCITY = -500.0
-MAX_WALK_VELOCITY = 200.0
 
 [node name="PauseManager" parent="." instance=ExtResource("2_vbasy")]
 

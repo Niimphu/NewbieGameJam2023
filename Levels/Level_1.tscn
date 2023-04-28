@@ -74,6 +74,8 @@ metadata/_edit_lock_ = true
 position = Vector2(394, 477)
 floor_stop_on_slope = false
 floor_max_angle = 0.872665
+JUMP_VELOCITY = -460.0
+MAX_WALK_VELOCITY = 250.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")

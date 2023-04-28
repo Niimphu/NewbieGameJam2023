@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7d33y1olwn8l"]
+[gd_scene load_steps=2 format=3 uid="uid://b7d33y1olwn8l"]
 
 [ext_resource type="Texture2D" uid="uid://bmebij0evev40" path="res://Levels/Environment/Crate/Crate.png" id="1_kaf4x"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx63e"]
-size = Vector2(64, 69)
 
 [node name="Crate" type="RigidBody2D"]
 collision_layer = 8
@@ -12,11 +9,11 @@ mass = 1.5
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 0.5)
-shape = SubResource("RectangleShape2D_vx63e")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
 scale = Vector2(0.251603, 0.245015)
 texture = ExtResource("1_kaf4x")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(3, 0.5)
+polygon = PackedVector2Array(31, 24.5, 32, -26.5, 31, -31.5, 27, -34.5, 23, -35.5, -25, -35.5, -29, -33.5, -31, -30.5, -30, 25.5, -29, 29.5, -26, 32.5, -22, 33.5, 25, 33.5, 28, 31.5, 31, 28.5)

@@ -7,12 +7,16 @@ extends CharacterBody2D
 @export var ATTACKING_VELOCITY_MOD: float = 0.5
 @export var PARASOL_GRAVITY_MODIFIER: float = 0.25
 @export var OBJECT_PUSH_FORCE: float = 2000.0
+@export var SHADOW_TRANSITION_SCALE: float = 1.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var sprite_scale = sprite.get_scale()
+
+var shader_shadow_scale: float = 0.0
+
 # The initial x scale of the sprite to be used to flip the sprite and preserve its position
 # so that it will stay within the CollisionShape2D.
 #var sprite_scale_x: float = sprite.scale.x
@@ -30,7 +34,6 @@ enum ATTACK_DIRECTION_STATES {
 	UP = 1
 }
 
-
 # The currently playing animation from the AnimationTree node
 var current_animation_state: StringName
 var parasol_state: PARASOL_STATES = PARASOL_STATES.CLOSED
@@ -44,6 +47,16 @@ var direction = Vector2.ZERO
 func _ready():
 	update_parasol_animation_blend_positions()
 	animation_state.start("Idle")
+
+func _process(delta):
+	if DirectSunlightManager.player_in_sunlight:
+		if not is_equal_approx(shader_shadow_scale, 0.0):
+			shader_shadow_scale = clampf(shader_shadow_scale - (delta * SHADOW_TRANSITION_SCALE), 0.0, 1.0)
+	else:
+		if not is_equal_approx(shader_shadow_scale, 1.0):
+			shader_shadow_scale = clampf(shader_shadow_scale + (delta * SHADOW_TRANSITION_SCALE), 0.0, 1.0)
+	
+	sprite.material.set_shader_parameter("shadow_scale", shader_shadow_scale)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -92,9 +105,11 @@ func change_parasol_state():
 		PARASOL_STATES.CLOSED:
 			animation_state.travel("open_parasol")
 			parasol_state = PARASOL_STATES.OPEN
+			PlayerStatManager.parasol_open = true
 		PARASOL_STATES.OPEN:
 			animation_state.travel("close_parasol")
 			parasol_state = PARASOL_STATES.CLOSED
+			PlayerStatManager.parasol_open = false
 
 func player_attack():
 	attack_cooldown.start()

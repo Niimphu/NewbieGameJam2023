@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://boyv5a0kcs1ej"]
+[gd_scene load_steps=22 format=3 uid="uid://boyv5a0kcs1ej"]
 
 [ext_resource type="Script" path="res://Levels/CloudsTutorial.gd" id="1_5av40"]
+[ext_resource type="Script" path="res://Levels/Environment/SceneChangeUpdater.gd" id="1_p3fb7"]
 [ext_resource type="Texture2D" uid="uid://lnvdwpo18ykl" path="res://Levels/Tutorial/Sprites/Cloud1.PNG" id="2_1rswu"]
 [ext_resource type="Texture2D" uid="uid://dk8fsotjkqgqq" path="res://Levels/Tutorial/Sprites/Background1.PNG" id="2_2btl2"]
 [ext_resource type="Texture2D" uid="uid://btcxwuqtyclt3" path="res://Levels/Tutorial/Sprites/Background2.PNG" id="2_5t8ry"]
@@ -16,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bntcm8a5xf31m" path="res://Levels/Tutorial/Sprites/Tarp/TutorialTarp4.png" id="8_nj375"]
 [ext_resource type="Texture2D" uid="uid://c4debxvmbvinc" path="res://Levels/Tutorial/Sprites/Tarp/TutorialTarp5.png" id="9_v6gmv"]
 [ext_resource type="PackedScene" uid="uid://denmcawtlettb" path="res://Levels/Environment/Sun.tscn" id="16_r1fc6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g1mk"]
+size = Vector2(20, 117)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iwcyp"]
 animations = [{
@@ -44,9 +48,10 @@ animations = [{
 size = Vector2(188.182, 20.9091)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7l84w"]
-polygon = PackedVector2Array(75.4545, -44.5454, 86.3636, -44.5454, 98.1818, -36.3636, 96.3636, -10, -98.1818, -15.4546, -80.9091, -40)
+polygon = PackedVector2Array(75.4545, -44.5454, 86.3636, -44.5454, 98.1818, -36.3636, 82.7273, 50.9091, -110, 47.2727, -93.6364, -20.9091, -80.9091, -40)
 
-[node name="Tutorial" type="Node2D"]
+[node name="Tutorial" type="Node2D" groups=["level_root_node"]]
+script = ExtResource("1_p3fb7")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -104,6 +109,15 @@ polygon = PackedVector2Array(-4946.5, -643, -4946.5, -641.8, -4854.5, -588.8, -4
 [node name="Crate" parent="." instance=ExtResource("5_48eq1")]
 position = Vector2(1974, 424)
 
+[node name="CrateBoundary" type="StaticBody2D" parent="."]
+position = Vector2(1275.05, 346.025)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrateBoundary"]
+position = Vector2(0, 36.475)
+shape = SubResource("RectangleShape2D_7g1mk")
+
 [node name="CrownCrab" parent="." instance=ExtResource("4_jmvpv")]
 position = Vector2(2754, 393)
 
@@ -114,6 +128,7 @@ position = Vector2(3515, 326)
 position = Vector2(199, 428)
 floor_stop_on_slope = false
 floor_max_angle = 0.872665
+SHADOW_TRANSITION_SCALE = 2.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
@@ -141,7 +156,7 @@ autoplay = "default"
 position = Vector2(2.27274, -39.5454)
 shape = SubResource("RectangleShape2D_4l1cj")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="FlappyTarp"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="FlappyTarp" groups=["shadows"]]
 occluder = SubResource("OccluderPolygon2D_7l84w")
 
 [node name="Sun" parent="." instance=ExtResource("16_r1fc6")]

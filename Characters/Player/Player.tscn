@@ -1,9 +1,15 @@
-[gd_scene load_steps=55 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=57 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
 [ext_resource type="PackedScene" uid="uid://cs055uggajtfv" path="res://Characters/Player/PauseManager.tscn" id="2_vbasy"]
+[ext_resource type="Shader" path="res://Characters/Player/PlayerShadow.gdshader" id="4_t8n13"]
 [ext_resource type="Texture2D" uid="uid://ddvg0puekq4el" path="res://Characters/Player/Spritesheet_player.png" id="6_lxn1d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0py2"]
+shader = ExtResource("4_t8n13")
+shader_parameter/shadow_scale = 0.0
+shader_parameter/shadow_color = Quaternion(0.25, 0.25, 0.25, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vmqq7"]
 radius = 17.0
@@ -403,7 +409,7 @@ graph_offset = Vector2(53, -428.236)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
-collision_layer = 2
+collision_layer = 16386
 collision_mask = 13
 floor_snap_length = 4.0
 script = ExtResource("1_cg0yb")
@@ -421,6 +427,7 @@ one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 2
+material = SubResource("ShaderMaterial_b0py2")
 position = Vector2(4.54747e-13, 4.54747e-13)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("6_lxn1d")

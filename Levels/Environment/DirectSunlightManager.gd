@@ -93,6 +93,5 @@ func check_player_in_shadow():
 	
 	for shadow_shape_cast in shadow_shape_casts:
 		if shadow_shape_cast.is_colliding():
-			if shadow_shape_cast.get_collision_count() == 4: # All four corners of the player's sprite need to be inside the shadow to detect full coverage
-				player_in_sunlight = false
-				break
+			player_in_sunlight = false
+			break

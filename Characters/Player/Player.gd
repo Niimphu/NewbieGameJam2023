@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var MAX_WALK_VELOCITY: float = 250.0
 @export var ATTACKING_VELOCITY_MOD: float = 0.5
 @export var PARASOL_GRAVITY_MODIFIER: float = 0.25
+@export var OBJECT_PUSH_FORCE: float = 2000.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
@@ -88,12 +89,12 @@ func apply_gravity(delta):
 
 func change_parasol_state():
 	match parasol_state:
-			PARASOL_STATES.CLOSED:
-				animation_state.travel("open_parasol")
-				parasol_state = PARASOL_STATES.OPEN
-			PARASOL_STATES.OPEN:
-				animation_state.travel("close_parasol")
-				parasol_state = PARASOL_STATES.CLOSED
+		PARASOL_STATES.CLOSED:
+			animation_state.travel("open_parasol")
+			parasol_state = PARASOL_STATES.OPEN
+		PARASOL_STATES.OPEN:
+			animation_state.travel("close_parasol")
+			parasol_state = PARASOL_STATES.CLOSED
 
 func player_attack():
 	attack_cooldown.start()
@@ -123,8 +124,10 @@ func update_sprite_direction():
 func check_pushable_object():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		if collision.get_collider().is_class("RigidBody2D"):
-			collision.get_collider().apply_central_impulse(Vector2(velocity.x, 0.0))
+		var collider = collision.get_collider()
+		if collider.is_class("RigidBody2D"):
+			# collision.get_collider().apply_central_impulse(Vector2(velocity.x, 0.0))
+			collider.apply_force(collision.get_normal() * -OBJECT_PUSH_FORCE)
 
 func _on_attack_cooldown_timeout():
 	is_attacking = false

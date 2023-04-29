@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=60 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
@@ -343,27 +343,22 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_ryx6e")
 blend_point_1/pos = 1.0
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yhxf4"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tt3qw"]
 animation = &"close_parasol"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mhf0t"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bsk68"]
 animation = &"open_parasol"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_w3fyk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_tt3qw")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_bsk68")
+blend_point_1/pos = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ysff"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mooda"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fxpy4"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4sja"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ogllg"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_34wuy"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r0e8g"]
 
@@ -379,31 +374,41 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6qm47"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vqi8i"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8djce"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xy7bd"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8djce"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bt00h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ydw7k"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ll5l2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3lohj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hf5kx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7m7nn"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b07rd"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace1D_4g6e6")
-states/Attack/position = Vector2(269, -198)
+states/Attack/position = Vector2(179, -154)
 states/End/position = Vector2(426, 270)
 states/Fall/node = SubResource("AnimationNodeBlendSpace1D_yvjbd")
-states/Fall/position = Vector2(579, -63)
+states/Fall/position = Vector2(489, -57)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_r6whx")
-states/Idle/position = Vector2(426, -63)
+states/Idle/position = Vector2(370, -154)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_r8nft")
-states/Jump/position = Vector2(579, -198)
+states/Jump/position = Vector2(718, -316)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_2s24w")
-states/Run/position = Vector2(426, -305)
+states/Run/position = Vector2(179, -316)
 states/Start/position = Vector2(426, 215)
-states/close_parasol/node = SubResource("AnimationNodeAnimation_yhxf4")
-states/close_parasol/position = Vector2(269, 90)
-states/open_parasol/node = SubResource("AnimationNodeAnimation_mhf0t")
-states/open_parasol/position = Vector2(579, 90)
-transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "open_parasol", SubResource("AnimationNodeStateMachineTransition_fxpy4"), "open_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_g4sja"), "close_parasol", "Idle", SubResource("AnimationNodeStateMachineTransition_ogllg"), "Idle", "close_parasol", SubResource("AnimationNodeStateMachineTransition_34wuy"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_r0e8g"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_3oko5"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_b3vxp"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_ihrhg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_1rbnr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6qm47"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_vqi8i"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8djce")]
-graph_offset = Vector2(53, -428.236)
+states/ToggleParasol/node = SubResource("AnimationNodeBlendSpace1D_w3fyk")
+states/ToggleParasol/position = Vector2(370, -425)
+transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_r0e8g"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_3oko5"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_b3vxp"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_ihrhg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_1rbnr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6qm47"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8djce"), "ToggleParasol", "Idle", SubResource("AnimationNodeStateMachineTransition_xy7bd"), "Run", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_bt00h"), "Idle", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_ydw7k"), "Jump", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_ll5l2"), "Fall", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_3lohj"), "Jump", "Attack", SubResource("AnimationNodeStateMachineTransition_hf5kx"), "Fall", "Attack", SubResource("AnimationNodeStateMachineTransition_7m7nn")]
+graph_offset = Vector2(50, -471.236)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 
@@ -454,5 +459,6 @@ parameters/Fall/blend_position = 0
 parameters/Idle/blend_position = null
 parameters/Jump/blend_position = null
 parameters/Run/blend_position = null
+parameters/ToggleParasol/blend_position = 0.00114548
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

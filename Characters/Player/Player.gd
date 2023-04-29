@@ -66,10 +66,10 @@ func _physics_process(delta):
 
 	update_current_attack_direction_state()
 
-	if Input.is_action_just_pressed("toggle_parasol") and \
-		current_animation_state != "open_parasol" and current_animation_state != "close_parasol":
+	if Input.is_action_just_pressed("toggle_parasol") and current_animation_state != "Attack":
 		change_parasol_state()
 		update_parasol_animation_blend_positions()
+		animation_state.travel("ToggleParasol")
 	elif Input.is_action_just_pressed("jump") and is_on_floor() and (current_animation_state == "Idle" or current_animation_state == "Run"):
 		animation_state.travel("Jump")
 		velocity.y = JUMP_VELOCITY
@@ -88,7 +88,7 @@ func _physics_process(delta):
 
 	if is_on_wall():
 		check_pushable_object()
-	print(current_animation_state)
+	
 	update_sprite_direction()
 	update_animation()
 	move_and_slide()
@@ -103,11 +103,9 @@ func apply_gravity(delta):
 func change_parasol_state():
 	match parasol_state:
 		PARASOL_STATES.CLOSED:
-			animation_state.travel("open_parasol")
 			parasol_state = PARASOL_STATES.OPEN
 			PlayerStatManager.parasol_open = true
 		PARASOL_STATES.OPEN:
-			animation_state.travel("close_parasol")
 			parasol_state = PARASOL_STATES.CLOSED
 			PlayerStatManager.parasol_open = false
 
@@ -153,15 +151,14 @@ func update_parasol_animation_blend_positions():
 	animation_tree.set("parameters/Run/blend_position", parasol_state)
 	animation_tree.set("parameters/Jump/blend_position", parasol_state)
 	animation_tree.set("parameters/Fall/blend_position", parasol_state)
+	animation_tree.set("parameters/ToggleParasol/blend_position", parasol_state)
 
 func update_current_attack_direction_state():
-#	if Input.is_action_pressed("attack_modifier_down"):
-#		attack_direction_state = ATTACK_DIRECTION_STATES.DOWN
-#	elif Input.is_action_pressed("attack_modifier_up"):
-#		attack_direction_state = ATTACK_DIRECTION_STATES.UP
-	var vertical_attack_strength = Input.get_action_strength("ui_down") - Input.get_action_strength(("ui_up"))
-	
-	if vertical_attack_strength:
-		attack_direction_state = ATTACK_DIRECTION_STATES.DOWN if vertical_attack_strength > 0 else ATTACK_DIRECTION_STATES.UP
-	else:
+	var vertical_attack_strength = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+
+	if vertical_attack_strength < 0:
+		attack_direction_state = ATTACK_DIRECTION_STATES.UP
+	elif vertical_attack_strength > 0:
+		attack_direction_state = ATTACK_DIRECTION_STATES.DOWN
+	elif is_equal_approx(vertical_attack_strength, 0.0):
 		attack_direction_state = ATTACK_DIRECTION_STATES.FRONT

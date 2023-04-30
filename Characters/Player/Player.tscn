@@ -481,13 +481,11 @@ disabled = true
 
 [node name="CollisionShape2D_Up" type="CollisionShape2D" parent="AttackArea2D"]
 position = Vector2(15.625, -47.1875)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_flhnj")
 disabled = true
 
 [node name="CollisionShape2D_Down" type="CollisionShape2D" parent="AttackArea2D"]
 position = Vector2(19.375, 20.625)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_p73p7")
 disabled = true
 

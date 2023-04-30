@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86tbb"]
 shader = ExtResource("1_tvq6x")
-shader_parameter/fill_ratio = 0.5
+shader_parameter/fill_ratio = 1.0
 shader_parameter/health_bar_foreground_color = Vector3(0, 1, 0)
 shader_parameter/health_bar_background_color = Vector3(0.1, 0.1, 0.1)
 

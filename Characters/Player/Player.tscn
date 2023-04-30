@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=63 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
@@ -415,6 +415,12 @@ graph_offset = Vector2(-6, -591.236)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7aihy"]
 size = Vector2(66.25, 46.25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flhnj"]
+size = Vector2(46.25, 73.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p73p7"]
+size = Vector2(53.75, 61.25)
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
 collision_layer = 16386
@@ -464,13 +470,25 @@ parameters/Jump/blend_position = null
 parameters/Run/blend_position = null
 parameters/ToggleParasol/blend_position = 0.00114548
 
-[node name="AttackForwardArea2D" type="Area2D" parent="."]
+[node name="AttackArea2D" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackForwardArea2D"]
+[node name="CollisionShape2D_Front" type="CollisionShape2D" parent="AttackArea2D"]
 position = Vector2(50.625, 13.125)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7aihy")
+disabled = true
+
+[node name="CollisionShape2D_Up" type="CollisionShape2D" parent="AttackArea2D"]
+position = Vector2(15.625, -47.1875)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_flhnj")
+disabled = true
+
+[node name="CollisionShape2D_Down" type="CollisionShape2D" parent="AttackArea2D"]
+position = Vector2(19.375, 20.625)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_p73p7")
+disabled = true
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

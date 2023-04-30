@@ -13,7 +13,7 @@ extends CharacterBody2D
 @onready var animation_state = animation_tree.get("parameters/playback")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown: Timer = $AttackCooldown
-@onready var attack_forward_area2D: Area2D = $AttackForwardArea2D
+@onready var attack_area2D: Area2D = $AttackArea2D
 
 # The initial scale of the sprite to be used to flip the sprite and preserve its position
 # so that it will stay within the CollisionShape2D.
@@ -34,6 +34,10 @@ enum ATTACK_DIRECTION_STATES {
 	UP = 1
 }
 
+# A dictionary of the three attack collision shapes for up, front, an down.
+# This is used with the parasol swinging attack to enable and disable specific attack collision shapes.
+var attack_collision_shapes: Dictionary
+
 # The currently playing animation from the AnimationTree node
 var current_animation_state: StringName
 var parasol_state: PARASOL_STATES = PARASOL_STATES.CLOSED
@@ -47,7 +51,12 @@ var direction = Vector2.ZERO
 func _ready():
 	update_parasol_animation_blend_positions()
 	animation_state.start("Idle")
-	#attack_forward_area2D.monitorable = false
+	
+	attack_collision_shapes = {
+		up = attack_area2D.get_node("CollisionShape2D_Up"),
+		front = attack_area2D.get_node("CollisionShape2D_Front"),
+		down = attack_area2D.get_node("CollisionShape2D_Down")
+	}
 
 func _process(delta):
 	if DirectSunlightManager.player_in_sunlight:
@@ -76,8 +85,6 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	elif Input.is_action_pressed("attack") and attack_cooldown.is_stopped() and parasol_state == PARASOL_STATES.CLOSED:
 		player_attack()
-
-	attack_forward_area2D.get_node("CollisionShape2D").disabled = attack_cooldown.is_stopped()
 
 	# Get the input direction and handle the movement/deceleration.
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -118,6 +125,14 @@ func player_attack():
 	animation_state.travel("Attack")
 	MAX_WALK_VELOCITY *= ATTACKING_VELOCITY_MOD
 
+	match attack_direction_state:
+		ATTACK_DIRECTION_STATES.UP:
+			attack_collision_shapes.up.disabled = false
+		ATTACK_DIRECTION_STATES.FRONT:
+			attack_collision_shapes.front.disabled = false
+		ATTACK_DIRECTION_STATES.DOWN:
+			attack_collision_shapes.down.disabled = false
+
 func update_animation():
 	if current_animation_state == "open_parasol" or current_animation_state == "close_parasol":
 		return
@@ -127,28 +142,30 @@ func update_animation():
 		animation_state.travel("Run")
 	elif current_animation_state == "Jump" and velocity.y > 0:
 		animation_state.travel("Fall")
-#	elif current_animation_state == "Fall" and is_equal_approx(velocity.y, 0.0):
 	elif is_on_floor() and current_animation_state == "Fall":
 		animation_state.travel("Idle")
 
 func update_sprite_direction():
 	if direction.x < 0:
 		sprite.scale.x = -sprite_scale.x
-		attack_forward_area2D.scale.x = -1
+		attack_area2D.scale.x = -1
 	elif direction.x > 0:
 		sprite.scale.x = sprite_scale.x
-		attack_forward_area2D.scale.x = 1
+		attack_area2D.scale.x = 1
 
 func check_pushable_object():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider.is_class("RigidBody2D"):
-			# collision.get_collider().apply_central_impulse(Vector2(velocity.x, 0.0))
 			collider.apply_force(collision.get_normal() * -OBJECT_PUSH_FORCE)
 
 func _on_attack_cooldown_timeout():
 	is_attacking = false
+
+	for key in attack_collision_shapes:
+		attack_collision_shapes[key].disabled = true
+	
 	MAX_WALK_VELOCITY /= ATTACKING_VELOCITY_MOD
 
 func update_parasol_animation_blend_positions():

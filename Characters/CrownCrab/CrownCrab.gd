@@ -5,6 +5,10 @@ extends CharacterBody2D
 const MIN_WANDER_DURATION_SECONDS: float = 1.0
 
 @export_group("Enemy Properties")
+
+@export var TAKE_DAMAGE_FORCE: Vector2 = Vector2(250.0, -500)
+@export var MAX_HEALTH: int = 3
+
 @export_subgroup("Movement")
 
 ## The speed at which the enemy slows down after it stops wandering.
@@ -31,12 +35,17 @@ const MIN_WANDER_DURATION_SECONDS: float = 1.0
 @export_range(MIN_WANDER_DURATION_SECONDS, 10) var MAX_WANDER_DURATION_SECONDS: float = 5.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var invincibility_timer: Timer = $InvincibilityTimer
+@onready var enemy_health_bar: Sprite2D = $EnemyHealthBar
+@onready var hit_particles: CPUParticles2D = $HitParticles
 
 var home_position: Vector2
 var is_wandering: bool = false
 var current_wander_check_seconds: float
 var current_wander_duration_seconds: float
 var wander_direction: int
+var is_invincible: bool = false
+var health: int = MAX_HEALTH
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -57,6 +66,9 @@ func _process(delta):
 		return
 	else:
 		is_wandering = false
+
+	if is_invincible:
+		return
 	
 	# We give the enemy a chance of wandering each time the current wander check seconds variable reaches 0
 	if current_wander_check_seconds > 0:
@@ -69,7 +81,7 @@ func _process(delta):
 	
 	if not is_wandering:
 		# The enemy decided to be lazy and stand around.
-		
+
 		return
 	
 	# The enemy decided to wander so we need to generate a random number of seconds for it to wander before it decides to stop.
@@ -104,3 +116,24 @@ func update_rotation():
 	if is_on_floor():
 		var normal: Vector2 = get_floor_normal() #match angle of sprite to angle of floor
 		animated_sprite.rotation = normal.angle() + 1.571 #this is 90 degrees in rads
+
+func _on_hit_detection_area_2d_area_entered(area:Area2D):
+	if is_invincible:
+		return
+
+	health -= 1
+
+	if health == 0:
+		queue_free()
+		return
+
+	is_wandering = false
+	is_invincible = true
+	invincibility_timer.start()
+	var knockback_direction = -sign(global_position.direction_to(area.global_position).x)
+	velocity = Vector2(knockback_direction * TAKE_DAMAGE_FORCE.x, TAKE_DAMAGE_FORCE.y)
+	hit_particles.emitting = true
+	enemy_health_bar.emit_signal("health_bar_update", float(health) / MAX_HEALTH)
+
+func _on_invincibility_timer_timeout():
+	is_invincible = false

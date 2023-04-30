@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt3sd5obyse5g"
-path="res://.godot/imported/goomba.png-d1ef5b76e1183d1060a61f972f08962f.ctex"
+uid="uid://ccwq5ofrh3aur"
+path="res://.godot/imported/enemyHealthBar.png-767f4f0b5ed3dfe1228d4f37c696b6de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/CrownCrab/goomba.png"
-dest_files=["res://.godot/imported/goomba.png-d1ef5b76e1183d1060a61f972f08962f.ctex"]
+source_file="res://Textures/enemyHealthBar.png"
+dest_files=["res://.godot/imported/enemyHealthBar.png-767f4f0b5ed3dfe1228d4f37c696b6de.ctex"]
 
 [params]
 
@@ -26,7 +26,7 @@ mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
-process/premult_alpha=false
+process/premult_alpha=true
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false

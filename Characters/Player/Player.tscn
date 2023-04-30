@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=61 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
@@ -412,10 +412,13 @@ graph_offset = Vector2(-6, -591.236)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7aihy"]
+size = Vector2(66.25, 46.25)
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
 collision_layer = 16386
-collision_mask = 13
+collision_mask = 9
 floor_snap_length = 4.0
 script = ExtResource("1_cg0yb")
 
@@ -460,5 +463,14 @@ parameters/Idle/blend_position = null
 parameters/Jump/blend_position = null
 parameters/Run/blend_position = null
 parameters/ToggleParasol/blend_position = 0.00114548
+
+[node name="AttackForwardArea2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackForwardArea2D"]
+position = Vector2(50.625, 13.125)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_7aihy")
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

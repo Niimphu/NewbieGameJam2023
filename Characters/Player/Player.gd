@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var animation_state = animation_tree.get("parameters/playback")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown: Timer = $AttackCooldown
+@onready var attack_forward_area2D: Area2D = $AttackForwardArea2D
 
 # The initial scale of the sprite to be used to flip the sprite and preserve its position
 # so that it will stay within the CollisionShape2D.
@@ -46,6 +47,7 @@ var direction = Vector2.ZERO
 func _ready():
 	update_parasol_animation_blend_positions()
 	animation_state.start("Idle")
+	#attack_forward_area2D.monitorable = false
 
 func _process(delta):
 	if DirectSunlightManager.player_in_sunlight:
@@ -74,6 +76,8 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	elif Input.is_action_pressed("attack") and attack_cooldown.is_stopped() and parasol_state == PARASOL_STATES.CLOSED:
 		player_attack()
+
+	attack_forward_area2D.get_node("CollisionShape2D").disabled = attack_cooldown.is_stopped()
 
 	# Get the input direction and handle the movement/deceleration.
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -130,8 +134,10 @@ func update_animation():
 func update_sprite_direction():
 	if direction.x < 0:
 		sprite.scale.x = -sprite_scale.x
+		attack_forward_area2D.scale.x = -1
 	elif direction.x > 0:
 		sprite.scale.x = sprite_scale.x
+		attack_forward_area2D.scale.x = 1
 
 func check_pushable_object():
 	for i in get_slide_collision_count():

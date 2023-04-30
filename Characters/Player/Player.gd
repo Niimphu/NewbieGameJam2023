@@ -14,6 +14,8 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var attack_area2D: Area2D = $AttackArea2D
+@onready var regen_delay_timer: Timer = $RegenDelayTimer
+@onready var toggle_parasol_cooldown: Timer = $ToggleParasolCooldown
 
 # The initial scale of the sprite to be used to flip the sprite and preserve its position
 # so that it will stay within the CollisionShape2D.
@@ -58,6 +60,9 @@ func _ready():
 		down = attack_area2D.get_node("CollisionShape2D_Down")
 	}
 
+	PlayerStatManager.connect("start_health_regen_timer", _on_start_health_regen_timer)
+	regen_delay_timer.connect("timeout", PlayerStatManager._on_regen_delay_timer_timeout)
+
 func _process(delta):
 	if DirectSunlightManager.player_in_sunlight:
 		if not is_equal_approx(shader_shadow_scale, 0.0):
@@ -76,10 +81,11 @@ func _physics_process(delta):
 
 	update_current_attack_direction_state()
 
-	if Input.is_action_just_pressed("toggle_parasol") and current_animation_state != "Attack":
+	if Input.is_action_just_pressed("toggle_parasol") and current_animation_state != "Attack" and toggle_parasol_cooldown.is_stopped():
 		change_parasol_state()
 		update_parasol_animation_blend_positions()
 		animation_state.travel("ToggleParasol")
+		toggle_parasol_cooldown.start()
 	elif Input.is_action_just_pressed("jump") and is_on_floor() and (current_animation_state == "Idle" or current_animation_state == "Run"):
 		animation_state.travel("Jump")
 		velocity.y = JUMP_VELOCITY
@@ -98,6 +104,8 @@ func _physics_process(delta):
 
 	if is_on_wall():
 		check_pushable_object()
+
+	#print(current_animation_state)
 	
 	update_sprite_direction()
 	update_animation()
@@ -134,14 +142,12 @@ func player_attack():
 			attack_collision_shapes.down.disabled = false
 
 func update_animation():
-	if current_animation_state == "open_parasol" or current_animation_state == "close_parasol":
-		return
+	if velocity.y > 0:
+		animation_state.travel("Fall")
 	elif is_equal_approx(direction.x, 0.0) and current_animation_state == "Run":
 		animation_state.travel("Idle")
 	elif direction.x != 0.0 and current_animation_state == "Idle":
 		animation_state.travel("Run")
-	elif current_animation_state == "Jump" and velocity.y > 0:
-		animation_state.travel("Fall")
 	elif is_on_floor() and current_animation_state == "Fall":
 		animation_state.travel("Idle")
 
@@ -184,3 +190,6 @@ func update_current_attack_direction_state():
 		attack_direction_state = ATTACK_DIRECTION_STATES.DOWN
 	elif is_equal_approx(vertical_attack_strength, 0.0):
 		attack_direction_state = ATTACK_DIRECTION_STATES.FRONT
+
+func _on_start_health_regen_timer():
+	regen_delay_timer.start()

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ivkak7cgg1v"]
+
+[ext_resource type="Shader" path="res://Characters/Player/UI/Vignette.gdshader" id="1_tu0gm"]
+[ext_resource type="Texture2D" uid="uid://dein25xmeg7te" path="res://Textures/vignette.png" id="2_rx11l"]
+[ext_resource type="Script" path="res://Characters/Player/UI/Vignette.gd" id="3_cfxnw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxqb8"]
+shader = ExtResource("1_tu0gm")
+shader_parameter/pulse_ratio = 0.5
+shader_parameter/pulse_offset = 0.3
+shader_parameter/vignette_alpha_offset = -0.2
+shader_parameter/vignette_alpha = 1.0
+shader_parameter/sun_damage_color = Color(0.94902, 0.196078, 0, 1)
+
+[node name="Vignette" type="TextureRect"]
+material = SubResource("ShaderMaterial_wxqb8")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_rx11l")
+script = ExtResource("3_cfxnw")

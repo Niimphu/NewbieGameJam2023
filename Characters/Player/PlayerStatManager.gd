@@ -9,8 +9,10 @@ signal player_toggle_parasol(state: bool)
 # Emitted when the parasol is finished either opening or closing
 signal player_parasol_state_changed
 
+signal start_health_regen_timer
+
 const MAX_HEALTH: float = 100
-const SUNLIGHT_DAMAGE_PER_SECOND: float = 10
+const SUNLIGHT_DAMAGE_PER_SECOND: float = 18
 const PASSIVE_HEALING_PER_SECOND: float = 5
 
 var health: float
@@ -21,6 +23,9 @@ var parasol_opening: bool = false
 # The current open or closed state of the parasol, used for direct sunlight checks
 var parasol_open: bool = false
 
+var can_regenerate_health: bool = true
+var is_in_shade: bool = true
+
 func _ready():
 	self.connect("player_parasol_state_changed", _on_player_parasol_state_changed)
 	health = MAX_HEALTH
@@ -29,8 +34,13 @@ func _process(delta):
 	if DirectSunlightManager.is_processing():
 		if DirectSunlightManager.player_in_sunlight and not parasol_open:
 			health = clampf(health - (SUNLIGHT_DAMAGE_PER_SECOND * delta), 0.0, MAX_HEALTH)
+			can_regenerate_health = false
+			is_in_shade = false
 			emit_signal("player_health_changed")
-		elif health < MAX_HEALTH:
+		elif not is_in_shade and (not DirectSunlightManager.player_in_sunlight or parasol_open):
+			is_in_shade = true
+			emit_signal("start_health_regen_timer")
+		elif health < MAX_HEALTH and can_regenerate_health:
 			health = clampf(health + (PASSIVE_HEALING_PER_SECOND * delta), 0.0, MAX_HEALTH)
 			emit_signal("player_health_changed")
 	
@@ -40,3 +50,6 @@ func _process(delta):
 
 func _on_player_parasol_state_changed():
 	parasol_open = parasol_opening
+
+func _on_regen_delay_timer_timeout():
+	can_regenerate_health = true

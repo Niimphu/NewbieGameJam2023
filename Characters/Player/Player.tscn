@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://86i5b4bp1hry"]
+[gd_scene load_steps=64 format=3 uid="uid://86i5b4bp1hry"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="1_cg0yb"]
 [ext_resource type="PackedScene" uid="uid://5vev7xxhbg3f" path="res://Characters/Player/UI/PlayerUI.tscn" id="2_tgliu"]
@@ -376,10 +376,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8djce"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xy7bd"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bt00h"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ydw7k"]
@@ -392,6 +388,12 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7m7nn"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f5x85"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qv86q"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b07rd"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace1D_4g6e6")
 states/Attack/position = Vector2(179, -154)
@@ -401,14 +403,14 @@ states/Fall/position = Vector2(489, -57)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_r6whx")
 states/Idle/position = Vector2(370, -154)
 states/Jump/node = SubResource("AnimationNodeBlendSpace1D_r8nft")
-states/Jump/position = Vector2(718, -316)
+states/Jump/position = Vector2(756, -382)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_2s24w")
 states/Run/position = Vector2(179, -316)
 states/Start/position = Vector2(426, 215)
 states/ToggleParasol/node = SubResource("AnimationNodeBlendSpace1D_w3fyk")
 states/ToggleParasol/position = Vector2(370, -425)
-transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_r0e8g"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_3oko5"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_b3vxp"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_ihrhg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_1rbnr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6qm47"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8djce"), "ToggleParasol", "Idle", SubResource("AnimationNodeStateMachineTransition_xy7bd"), "Run", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_bt00h"), "Idle", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_ydw7k"), "Jump", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_ll5l2"), "Fall", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_3lohj"), "Jump", "Attack", SubResource("AnimationNodeStateMachineTransition_hf5kx"), "Fall", "Attack", SubResource("AnimationNodeStateMachineTransition_7m7nn")]
-graph_offset = Vector2(-6, -591.236)
+transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_r0e8g"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_3oko5"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_b3vxp"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_ihrhg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_1rbnr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6qm47"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8djce"), "Run", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_bt00h"), "Idle", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_ydw7k"), "Jump", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_ll5l2"), "Fall", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_3lohj"), "Jump", "Attack", SubResource("AnimationNodeStateMachineTransition_hf5kx"), "Fall", "Attack", SubResource("AnimationNodeStateMachineTransition_7m7nn"), "ToggleParasol", "Idle", SubResource("AnimationNodeStateMachineTransition_f5x85"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_qv86q")]
+graph_offset = Vector2(-99, -516.236)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 
@@ -434,10 +436,6 @@ script = ExtResource("1_cg0yb")
 
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("2_tgliu")]
 mouse_filter = 2
-
-[node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.6
-one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 2
@@ -488,5 +486,16 @@ disabled = true
 position = Vector2(19.375, 20.625)
 shape = SubResource("RectangleShape2D_p73p7")
 disabled = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="RegenDelayTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ToggleParasolCooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

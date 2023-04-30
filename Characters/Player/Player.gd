@@ -13,13 +13,12 @@ extends CharacterBody2D
 @onready var animation_state = animation_tree.get("parameters/playback")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown: Timer = $AttackCooldown
+
+# The initial scale of the sprite to be used to flip the sprite and preserve its position
+# so that it will stay within the CollisionShape2D.
 @onready var sprite_scale = sprite.get_scale()
 
 var shader_shadow_scale: float = 0.0
-
-# The initial x scale of the sprite to be used to flip the sprite and preserve its position
-# so that it will stay within the CollisionShape2D.
-#var sprite_scale_x: float = sprite.scale.x
 
 # This enum represents the different possible states of the Parasol animation
 enum PARASOL_STATES {

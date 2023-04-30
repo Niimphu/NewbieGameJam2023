@@ -408,7 +408,7 @@ states/Start/position = Vector2(426, 215)
 states/ToggleParasol/node = SubResource("AnimationNodeBlendSpace1D_w3fyk")
 states/ToggleParasol/position = Vector2(370, -425)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_6ysff"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_mooda"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_r0e8g"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_3oko5"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_b3vxp"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_ihrhg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_1rbnr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6qm47"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_8djce"), "ToggleParasol", "Idle", SubResource("AnimationNodeStateMachineTransition_xy7bd"), "Run", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_bt00h"), "Idle", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_ydw7k"), "Jump", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_ll5l2"), "Fall", "ToggleParasol", SubResource("AnimationNodeStateMachineTransition_3lohj"), "Jump", "Attack", SubResource("AnimationNodeStateMachineTransition_hf5kx"), "Fall", "Attack", SubResource("AnimationNodeStateMachineTransition_7m7nn")]
-graph_offset = Vector2(50, -471.236)
+graph_offset = Vector2(-6, -591.236)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 

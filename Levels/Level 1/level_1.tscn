@@ -1,0 +1,205 @@
+[gd_scene load_steps=17 format=3 uid="uid://c5jgvrbt4hat0"]
+
+[ext_resource type="Texture2D" uid="uid://c46tcnpscdbyt" path="res://Levels/Level 1/Level 1 Ground.png" id="1_526fb"]
+[ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="1_kbnwk"]
+[ext_resource type="Script" path="res://Levels/CloudsTutorial.gd" id="2_u4nr7"]
+[ext_resource type="PackedScene" uid="uid://denmcawtlettb" path="res://Levels/Environment/Sun.tscn" id="3_nm4st"]
+[ext_resource type="Texture2D" uid="uid://lnvdwpo18ykl" path="res://Levels/Tutorial/Sprites/Cloud1.PNG" id="3_qkw46"]
+[ext_resource type="Texture2D" uid="uid://cr6jq8a6a5j5q" path="res://Levels/Tutorial/Sprites/Cloud2.PNG" id="4_s4tr1"]
+[ext_resource type="Texture2D" uid="uid://ct351306a1d0r" path="res://Levels/Tutorial/Sprites/Cloud3.PNG" id="5_p33x6"]
+[ext_resource type="Texture2D" uid="uid://btcxwuqtyclt3" path="res://Levels/Tutorial/Sprites/Background2.PNG" id="6_bvgwj"]
+[ext_resource type="Texture2D" uid="uid://cwa63ksxdlsnc" path="res://Levels/Level 1/ParallaxBG1.png" id="7_gwwqs"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3x4iu"]
+polygon = PackedVector2Array(-51, -18, 107, -22, 206, -9, 374, -24, 488, -61, 588, -78, 641, -92, 619, -57, 598, -17, 581, 2, 532, 17, 452, 43, 336, 69, 204, 90, 150, 95, 59, 109, -50, 142)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4pims"]
+polygon = PackedVector2Array(1160, 385, 1168, 400, 1185, 410, 1210, 408, 1383, 386, 1570, 360, 1644, 350, 1712, 343, 1777, 338, 1868, 328, 1920, 312, 1935, 300, 1939, 285, 1904, 280, 1840, 296, 1212, 358, 1173, 366)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ug8kj"]
+polygon = PackedVector2Array(2874, 180, 2876, 188, 2887, 195, 2924, 201, 2974, 207, 3011, 214, 3076, 215, 3088, 212, 3100, 205, 3107, 199, 3082, 205, 3007, 201, 2889, 185, 2876, 173)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5ekdo"]
+polygon = PackedVector2Array(3229, 197, 3233, 203, 3240, 206, 3248, 207, 3251, 207, 3245, 211, 3243, 218, 3242, 228, 3243, 235, 3250, 244, 3257, 247, 3266, 247, 3269, 248, 3274, 243, 3266, 242, 3259, 240, 3252, 235, 3249, 223, 3249, 214, 3256, 207, 3270, 207, 3277, 206, 3283, 204, 3288, 197, 3282, 196, 3261, 200, 3241, 197, 3231, 190)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b2t2t"]
+polygon = PackedVector2Array(3504, 275, 3508, 295, 3517, 314, 3534, 301, 3547, 283, 3561, 280, 3574, 276, 3584, 271, 3581, 277, 3569, 281, 3556, 286, 3549, 291, 3532, 315, 3524, 323, 3520, 331, 3513, 331, 3509, 327, 3505, 314)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gnv2r"]
+polygon = PackedVector2Array(3639, 246, 3646, 255, 3679, 264, 3726, 266, 3756, 257, 3764, 254, 3756, 269, 3746, 275, 3736, 277, 3702, 276, 3675, 272, 3656, 270, 3642, 260)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wmxal"]
+polygon = PackedVector2Array(4582, 346, 4639, 260, 4687, 212, 4787, 161, 4913, 83, 5019, -12, 5344, -199, 5647, -246, 6124, -293, 6588, -179, 6918, -78, 6985, 29, 7003, 129, 6991, 180, 6946, 218, 6946, 240, 6997, 244, 7483, 1463, 4216, 1267)
+
+[node name="Level_1" type="Node2D" groups=["level_root_node"]]
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(3898, 313)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_526fb")
+
+[node name="ShadowCasters" type="Node2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="ShadowCasters" groups=["shadows"]]
+occluder = SubResource("OccluderPolygon2D_3x4iu")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="ShadowCasters" groups=["shadows"]]
+occluder = SubResource("OccluderPolygon2D_4pims")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="ShadowCasters" groups=["shadows"]]
+occluder = SubResource("OccluderPolygon2D_ug8kj")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="ShadowCasters" groups=["shadows"]]
+occluder = SubResource("OccluderPolygon2D_5ekdo")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="ShadowCasters" groups=["shadows"]]
+occluder = SubResource("OccluderPolygon2D_b2t2t")
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="ShadowCasters" groups=["shadows"]]
+occluder = SubResource("OccluderPolygon2D_gnv2r")
+
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="ShadowCasters" groups=["shadows"]]
+occluder = SubResource("OccluderPolygon2D_wmxal")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer_Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1152, 0)
+script = ExtResource("2_u4nr7")
+CLOUD_SPEED = -50.0
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_Clouds"]
+position = Vector2(1000, 250)
+texture = ExtResource("3_qkw46")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_Clouds"]
+position = Vector2(797, 360)
+texture = ExtResource("4_s4tr1")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_Clouds"]
+position = Vector2(291, 156)
+texture = ExtResource("5_p33x6")
+
+[node name="ParallaxLayer_BackgroundTerrain" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.6, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_BackgroundTerrain"]
+position = Vector2(2230, 333)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_bvgwj")
+
+[node name="ParallaxLayer_BackgroundTerrain2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.92, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_BackgroundTerrain2"]
+position = Vector2(3890, 279)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_gwwqs")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 14
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-225, 404, 374, 400, 709, 398, 769, 409, 771, 429, 683, 635, 710, 641, 845, 636, 1032, 640, 1160, 633, 1255, 630, 1436, 604, 1558, 587, 1624, 581, 1800, 556, 1932, 540, 2025, 534, 2102, 536, 2172, 547, 2182, 554, 2183, 644, 2197, 649, 2654, 645, 2874, 652, 3083, 653, 3083, 662, 2861, 747, 2788, 797, 2762, 862, 2663, 973, -921, 1532)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_mask = 14
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(2548, 466, 2557, 457, 2579, 447, 2605, 442, 2635, 443, 2673, 453, 2717, 469, 2755, 489, 2803, 513, 2825, 524, 2847, 536, 2857, 546, 2861, 551, 2879, 556, 2890, 568, 2890, 577, 2874, 559, 2858, 553, 2786, 508, 2687, 477, 2649, 467, 2606, 459)
+one_way_collision = true
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(2691, 430, 2691, 412, 2695, 398, 2713, 382, 2752, 369, 2804, 358, 2859, 357, 2942, 356, 3001, 363, 3024, 379, 3039, 388, 3073, 405, 3108, 415, 3132, 428, 3153, 446, 3171, 474, 3169, 487, 3119, 433, 3013, 384, 2946, 367, 2883, 362, 2768, 372, 2705, 395)
+one_way_collision = true
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(2708, 319, 2715, 310, 2727, 305, 2737, 304, 2746, 307, 2749, 314, 2751, 318, 2746, 311, 2737, 306, 2724, 309, 2715, 314)
+one_way_collision = true
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(2795, 224, 2797, 218, 2801, 215, 2811, 212, 2847, 214, 2853, 217, 2857, 225, 2857, 235, 2847, 234, 2843, 223, 2829, 217, 2810, 218, 2800, 223, 2797, 230, 2795, 236, 2793, 234)
+one_way_collision = true
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(2935, 293, 2937, 284, 2943, 280, 2958, 274, 2975, 273, 2981, 274, 2984, 281, 2986, 290, 2987, 298, 2977, 297, 2972, 281, 2954, 282, 2942, 287, 2939, 298, 2937, 299)
+one_way_collision = true
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(3041, 350, 3044, 337, 3054, 331, 3074, 328, 3094, 329, 3107, 334, 3114, 346, 3117, 358, 3109, 356, 3094, 335, 3052, 340, 3048, 348, 3044, 354)
+one_way_collision = true
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(3137, 418, 3140, 413, 3153, 410, 3164, 412, 3170, 418, 3171, 421, 3168, 420, 3165, 416, 3160, 413, 3149, 413, 3141, 414, 3139, 418)
+one_way_collision = true
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(2876, 166, 2887, 156, 2899, 147, 2910, 143, 2927, 144, 3005, 154, 3045, 158, 3091, 169, 3103, 176, 3108, 188, 3108, 192)
+one_way_collision = true
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(3231, 177, 3234, 172, 3242, 167, 3253, 164, 3280, 167, 3289, 171, 3291, 177)
+one_way_collision = true
+
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(3504, 253, 3509, 243, 3525, 238, 3551, 237, 3571, 241, 3571, 248, 3585, 254, 3588, 258)
+one_way_collision = true
+
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(3640, 241, 3649, 227, 3666, 214, 3698, 205, 3723, 206, 3748, 213, 3759, 224, 3765, 239)
+one_way_collision = true
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(3403, 663, 3409, 654, 3428, 648, 3457, 645, 3495, 649, 3535, 658, 3617, 657, 3690, 638, 3737, 618, 3778, 610, 3822, 609, 3846, 617, 3859, 634, 3855, 654)
+one_way_collision = true
+
+[node name="CollisionPolygon2D13" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(4345, 679, 4351, 666, 4364, 655, 4361, 646, 4364, 633, 4382, 620, 4386, 613, 4453, 599, 4551, 589, 4622, 566, 4720, 546, 4821, 514, 4890, 481, 4939, 469, 4983, 454, 5014, 438, 5057, 424, 5086, 421, 5095, 426, 5099, 434, 5099, 447, 5098, 456, 5103, 487, 5046, 961, 4288, 927)
+one_way_collision = true
+
+[node name="CollisionPolygon2D14" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(5185, 351, 5190, 345, 5235, 342, 5236, 364, 5245, 410, 5238, 570, 5229, 770, 5242, 970, 5142, 967, 5154, 690, 5187, 555, 5190, 456, 5177, 400)
+one_way_collision = true
+
+[node name="CollisionPolygon2D15" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(5491, 392, 5529, 393, 5542, 969, 5436, 953)
+one_way_collision = true
+
+[node name="CollisionPolygon2D16" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(5637, 329, 5602, 326, 5599, 955, 5669, 960)
+one_way_collision = true
+
+[node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(5708, 292, 5743, 286, 6066, 279, 6136, 290, 6209, 328, 6406, 440, 6682, 572, 6868, 629, 6962, 631, 7904, 629, 7886, 1164, 6267, 957, 6011, 452, 5838, 333)
+one_way_collision = true
+
+[node name="Player" parent="." instance=ExtResource("1_kbnwk")]
+position = Vector2(129, 365)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(129, 365)
+scale = Vector2(0.8, 0.8)
+offset = Vector2(0, -100)
+process_callback = 0
+limit_left = -50
+limit_right = 7846
+limit_bottom = 920
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+
+[node name="Sun" parent="." instance=ExtResource("3_nm4st")]
+position = Vector2(1669, -430)
+energy = 0.8
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.25098, 0.25098, 0.25098, 1)
+metadata/_edit_lock_ = true

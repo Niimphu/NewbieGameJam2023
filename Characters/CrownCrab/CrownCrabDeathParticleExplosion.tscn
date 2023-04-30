@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg4p2rlxep7sl"]
+
+[ext_resource type="Script" path="res://Characters/CrownCrab/CrownCrabDeathParticleExplosion.gd" id="1_cckih"]
+
+[sub_resource type="Gradient" id="Gradient_64c8n"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.541241, 0.47676, 1, 0.877346, 3.87453e-06, 1.2514e-06, 1, 0, 0, 0, 1)
+
+[node name="CrownCrabDeathParticleExplosion" type="CPUParticles2D"]
+emitting = false
+amount = 30
+lifetime = 0.25
+one_shot = true
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(0, -1)
+spread = 0.0
+initial_velocity_min = 84.91
+initial_velocity_max = 84.91
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_64c8n")
+script = ExtResource("1_cckih")

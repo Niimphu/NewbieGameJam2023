@@ -39,6 +39,7 @@ const MIN_WANDER_DURATION_SECONDS: float = 1.0
 @onready var enemy_health_bar: Sprite2D = $EnemyHealthBar
 @onready var hit_particles: CPUParticles2D = $HitParticles
 
+var death_particle_explosion_scene = preload("res://Characters/CrownCrab/CrownCrabDeathParticleExplosion.tscn")
 var home_position: Vector2
 var is_wandering: bool = false
 var current_wander_check_seconds: float
@@ -124,6 +125,10 @@ func _on_hit_detection_area_2d_area_entered(area:Area2D):
 	health -= 1
 
 	if health == 0:
+		var death_particle_explosion = death_particle_explosion_scene.instantiate()
+		get_tree().get_first_node_in_group("level_root_node").add_child(death_particle_explosion)
+		death_particle_explosion.global_position = global_position
+		visible = false
 		queue_free()
 		return
 

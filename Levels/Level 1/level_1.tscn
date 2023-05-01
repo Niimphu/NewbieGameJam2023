@@ -180,6 +180,14 @@ one_way_collision = true
 
 [node name="Player" parent="." instance=ExtResource("1_kbnwk")]
 position = Vector2(129, 365)
+DECELERATION = null
+ACCELERATION = null
+JUMP_VELOCITY = null
+MAX_WALK_VELOCITY = null
+ATTACKING_VELOCITY_MOD = null
+PARASOL_GRAVITY_MODIFIER = null
+OBJECT_PUSH_FORCE = null
+SHADOW_TRANSITION_SCALE = null
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")

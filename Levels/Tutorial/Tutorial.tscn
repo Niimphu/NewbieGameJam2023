@@ -21,6 +21,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g1mk"]
 size = Vector2(20, 117)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4l1cj"]
+size = Vector2(188.182, 20.9091)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_iwcyp"]
 animations = [{
 "frames": [{
@@ -43,9 +46,6 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4l1cj"]
-size = Vector2(188.182, 20.9091)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7l84w"]
 polygon = PackedVector2Array(75.4545, -44.5454, 86.3636, -44.5454, 98.1818, -36.3636, 82.7273, 50.9091, -110, 47.2727, -93.6364, -20.9091, -80.9091, -40)
@@ -78,8 +78,8 @@ texture = ExtResource("4_0pj6a")
 motion_scale = Vector2(0.6, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_BackgroundTerrain"]
-position = Vector2(2230, 333)
-scale = Vector2(0.4, 0.4)
+position = Vector2(2100, 333)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_5t8ry")
 
 [node name="ParallaxLayer_BackgroundTerrain2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -128,6 +128,13 @@ position = Vector2(3515, 326)
 position = Vector2(199, 428)
 floor_stop_on_slope = false
 floor_max_angle = 0.872665
+DECELERATION = null
+ACCELERATION = null
+JUMP_VELOCITY = null
+MAX_WALK_VELOCITY = null
+ATTACKING_VELOCITY_MOD = null
+PARASOL_GRAVITY_MODIFIER = null
+OBJECT_PUSH_FORCE = null
 SHADOW_TRANSITION_SCALE = 2.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
@@ -138,30 +145,36 @@ position = Vector2(199, 428)
 scale = Vector2(0.8, 0.8)
 offset = Vector2(0, -100)
 process_callback = 0
+limit_left = -254
+limit_right = 5052
+limit_bottom = 920
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+editor_draw_limits = true
 
 [node name="FlappyTarp" type="StaticBody2D" parent="."]
 position = Vector2(204, 423)
 scale = Vector2(1.1, 1.1)
 collision_mask = 14
 
-[node name="Tarp" type="AnimatedSprite2D" parent="FlappyTarp"]
-sprite_frames = SubResource("SpriteFrames_iwcyp")
-autoplay = "default"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlappyTarp"]
 position = Vector2(2.27274, -39.5454)
 shape = SubResource("RectangleShape2D_4l1cj")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="FlappyTarp" groups=["shadows"]]
+[node name="Tarp" type="AnimatedSprite2D" parent="FlappyTarp"]
+light_mask = 2
+sprite_frames = SubResource("SpriteFrames_iwcyp")
+autoplay = "default"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="FlappyTarp/Tarp" groups=["shadows"]]
 occluder = SubResource("OccluderPolygon2D_7l84w")
 
 [node name="Sun" parent="." instance=ExtResource("16_r1fc6")]
 position = Vector2(814, 57)
 energy = 0.8
+range_item_cull_mask = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.25098, 0.25098, 0.25098, 1)

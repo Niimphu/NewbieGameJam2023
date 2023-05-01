@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwa63ksxdlsnc"
-path="res://.godot/imported/ParallaxBG1.png-a8f0b10642a8920c04cd7771225003d6.ctex"
+uid="uid://clggv1w4txasf"
+path="res://.godot/imported/Level1Ground.png-894f69bbaa219972920bddfd835d91be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/Level 1/ParallaxBG1.png"
-dest_files=["res://.godot/imported/ParallaxBG1.png-a8f0b10642a8920c04cd7771225003d6.ctex"]
+source_file="res://Levels/Level 1/Sprites/Level1Ground.png"
+dest_files=["res://.godot/imported/Level1Ground.png-894f69bbaa219972920bddfd835d91be.ctex"]
 
 [params]
 

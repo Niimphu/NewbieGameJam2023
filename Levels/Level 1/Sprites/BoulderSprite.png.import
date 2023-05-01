@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c46tcnpscdbyt"
-path="res://.godot/imported/Level 1 Ground.png-a2c85724328c318efbceef342b4fe491.ctex"
+uid="uid://1ypdkqskiit"
+path="res://.godot/imported/BoulderSprite.png-470c93d68157f698870541d00dca75c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/Level 1/Level 1 Ground.png"
-dest_files=["res://.godot/imported/Level 1 Ground.png-a2c85724328c318efbceef342b4fe491.ctex"]
+source_file="res://Levels/Level 1/Sprites/BoulderSprite.png"
+dest_files=["res://.godot/imported/BoulderSprite.png-470c93d68157f698870541d00dca75c0.ctex"]
 
 [params]
 

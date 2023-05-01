@@ -10,7 +10,7 @@ shader_parameter/pulse_ratio = 0.5
 shader_parameter/pulse_offset = 0.3
 shader_parameter/vignette_alpha_offset = -0.2
 shader_parameter/vignette_alpha = 1.0
-shader_parameter/sun_damage_color = Color(0.94902, 0.196078, 0, 1)
+shader_parameter/sun_damage_color = Color(1, 0.752941, 0.596078, 1)
 
 [node name="Vignette" type="TextureRect"]
 material = SubResource("ShaderMaterial_wxqb8")

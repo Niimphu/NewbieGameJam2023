@@ -49,6 +49,7 @@ var is_attacking = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")# * parasol_gravity_modifier
 var direction = Vector2.ZERO
+var death_particle_explosion_scene = preload("res://Characters/CrownCrab/CrownCrabDeathParticleExplosion.tscn")
 
 func _ready():
 	update_parasol_animation_blend_positions()
@@ -193,3 +194,11 @@ func update_current_attack_direction_state():
 
 func _on_start_health_regen_timer():
 	regen_delay_timer.start()
+
+func _on_player_ui_player_died():
+	var death_particle_explosion = death_particle_explosion_scene.instantiate()
+	get_tree().get_first_node_in_group("level_root_node").add_child(death_particle_explosion)
+	death_particle_explosion.global_position = global_position
+	visible = false
+	queue_free()
+	return

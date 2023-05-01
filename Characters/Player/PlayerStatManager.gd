@@ -2,21 +2,19 @@ extends Node
 
 # Emitted when the player's health changes
 signal player_health_changed
-
 # Emitted when the player presses the input for toggling the parasol
 signal player_toggle_parasol(state: bool)
-
 # Emitted when the parasol is finished either opening or closing
 signal player_parasol_state_changed
-
 signal start_health_regen_timer
+signal player_died
 
 const MAX_HEALTH: float = 100
-const SUNLIGHT_DAMAGE_PER_SECOND: float = 18
+const SUNLIGHT_DAMAGE_PER_SECOND: float = 16
 const PASSIVE_HEALING_PER_SECOND: float = 5
 
 var health: float
-
+var is_alive: bool
 # Used to determine the animation state of the parasol
 var parasol_opening: bool = false
 
@@ -29,8 +27,13 @@ var is_in_shade: bool = true
 func _ready():
 	self.connect("player_parasol_state_changed", _on_player_parasol_state_changed)
 	health = MAX_HEALTH
+	is_alive = true
 
 func _process(delta):
+	if health <= 0 and is_alive:
+		is_alive = false
+		player_died.emit()
+		get_tree().reload_current_scene()
 	if DirectSunlightManager.is_processing():
 		if DirectSunlightManager.player_in_sunlight and not parasol_open:
 			health = clampf(health - (SUNLIGHT_DAMAGE_PER_SECOND * delta), 0.0, MAX_HEALTH)

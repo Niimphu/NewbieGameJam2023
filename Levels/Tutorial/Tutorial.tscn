@@ -189,5 +189,3 @@ metadata/_edit_lock_ = true
 position = Vector2(4617, 286)
 scale = Vector2(5, 5)
 new_scene = ExtResource("21_dvbfj")
-
-[connection signal="body_entered" from="Sprout" to="Sprout" method="_on_body_entered"]

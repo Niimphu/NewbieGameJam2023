@@ -210,13 +210,13 @@ position = Vector2(5952, 276)
 
 [node name="Crabbos" type="Node2D" parent="."]
 
-[node name="WanderingEnemy" parent="Crabbos" instance=ExtResource("10_88ogy")]
+[node name="CrownCrab" parent="Crabbos" instance=ExtResource("10_88ogy")]
 position = Vector2(1476, 577)
 
-[node name="WanderingEnemy2" parent="Crabbos" instance=ExtResource("10_88ogy")]
+[node name="CrownCrab2" parent="Crabbos" instance=ExtResource("10_88ogy")]
 position = Vector2(6700, 542)
 
-[node name="WanderingEnemy3" parent="Crabbos" instance=ExtResource("10_88ogy")]
+[node name="CrownCrab3" parent="Crabbos" instance=ExtResource("10_88ogy")]
 position = Vector2(3611, 608)
 
 [node name="Player" parent="." instance=ExtResource("9_8x4hg")]

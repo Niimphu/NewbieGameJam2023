@@ -182,5 +182,3 @@ range_item_cull_mask = 2
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.25098, 0.25098, 0.25098, 1)
 metadata/_edit_lock_ = true
-
-[connection signal="body_entered" from="Sprout" to="Sprout" method="_on_body_entered"]

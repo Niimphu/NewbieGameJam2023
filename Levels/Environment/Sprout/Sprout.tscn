@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1yl180l5y16p"]
+
+[ext_resource type="Script" path="res://Levels/Environment/Sprout/Sprout.gd" id="1_mgtq2"]
+[ext_resource type="Texture2D" uid="uid://dwxegtnmg8crw" path="res://Levels/Environment/Sprout/Sprout.png" id="1_ychvu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypot7"]
+size = Vector2(24, 13)
+
+[node name="Sprout" type="Area2D"]
+collision_layer = 512
+collision_mask = 2
+script = ExtResource("1_mgtq2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -6.5)
+shape = SubResource("RectangleShape2D_ypot7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("1_ychvu")

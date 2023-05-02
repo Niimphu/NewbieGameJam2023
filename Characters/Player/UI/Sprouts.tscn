@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfsq7oggqoy3m"]
+
+[ext_resource type="Script" path="res://Characters/Player/UI/Sprouts.gd" id="1_xv745"]
+[ext_resource type="Texture2D" uid="uid://dwxegtnmg8crw" path="res://Levels/Environment/Sprout/Sprout.png" id="2_2vset"]
+
+[node name="Sprouts" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xv745")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 55.0
+offset_bottom = 49.0
+texture = ExtResource("2_2vset")
+expand_mode = 1
+
+[node name="SproutsCollected" type="Label" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 11.0
+offset_right = 89.0
+offset_bottom = 43.0
+text = "0"

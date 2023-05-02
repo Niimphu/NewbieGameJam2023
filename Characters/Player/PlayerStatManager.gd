@@ -23,6 +23,7 @@ var parasol_open: bool = false
 
 var can_regenerate_health: bool = true
 var is_in_shade: bool = true
+var sprouts_collected = 0
 
 func _ready():
 	self.connect("player_parasol_state_changed", _on_player_parasol_state_changed)

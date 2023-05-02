@@ -133,6 +133,8 @@ attack_modifier_down={
 2d_physics/layer_4="PhysicsObjects"
 2d_physics/layer_5="PhysicsObjectBoundaries"
 2d_physics/layer_6="PlayerParasolSwingAttack"
+2d_physics/layer_10="Collectible"
+2d_physics/layer_11="FallZone"
 2d_physics/layer_15="PlayerShadowDetectionArea"
 
 [rendering]

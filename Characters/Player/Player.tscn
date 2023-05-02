@@ -479,24 +479,20 @@ collision_mask = 4
 
 [node name="CollisionShape2D_Front" type="CollisionShape2D" parent="AttackArea2D"]
 position = Vector2(66.25, 11.875)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7aihy")
 disabled = true
 
 [node name="CollisionShape2D_Up" type="CollisionShape2D" parent="AttackArea2D"]
 position = Vector2(3.125, -50.3125)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_flhnj")
 disabled = true
 
 [node name="CollisionShape2D_Down" type="CollisionShape2D" parent="AttackArea2D"]
 position = Vector2(4.99999, 38.75)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_p73p7")
 disabled = true
 
 [node name="HitArea2D" type="Area2D" parent="."]
-scale = Vector2(1, 1)
 collision_layer = 2
 collision_mask = 4
 
@@ -522,8 +518,8 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[connection signal="body_entered" from="HitArea2D" to="." method="_on_hit_area_2d_body_entered"]
 [connection signal="body_entered" from="AttackArea2D" to="." method="_on_attack_area_2d_body_entered"]
+[connection signal="body_entered" from="HitArea2D" to="." method="_on_hit_area_2d_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

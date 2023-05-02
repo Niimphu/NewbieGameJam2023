@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://5vev7xxhbg3f"]
+[gd_scene load_steps=7 format=3 uid="uid://5vev7xxhbg3f"]
 
+[ext_resource type="Shader" path="res://Characters/Player/UI/SceneTransitionPanel.gdshader" id="1_7j1ou"]
 [ext_resource type="PackedScene" uid="uid://pxkpj2ulp307" path="res://Characters/Player/UI/HealthBar.tscn" id="1_u56eb"]
 [ext_resource type="PackedScene" uid="uid://d1ivkak7cgg1v" path="res://Characters/Player/UI/Vignette.tscn" id="2_1i8ju"]
 [ext_resource type="PackedScene" path="res://Characters/Player/UI/Sprouts.tscn" id="2_fmowf"]
+[ext_resource type="Script" path="res://Characters/Player/UI/SceneTransitionPanel.gd" id="2_oaetr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hf3xb"]
+shader = ExtResource("1_7j1ou")
+shader_parameter/scene_transition_ratio = 0.0
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -11,6 +17,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="SceneTransitionPanel" type="Panel" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_hf3xb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_oaetr")
 
 [node name="Vignette" parent="." instance=ExtResource("2_1i8ju")]
 layout_mode = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://urp5r5jvc12q"]
+[gd_scene load_steps=26 format=3 uid="uid://urp5r5jvc12q"]
 
 [ext_resource type="Script" path="res://Levels/CloudsTutorial.gd" id="1_5av40"]
 [ext_resource type="Script" path="res://Levels/Environment/SceneChangeUpdater.gd" id="1_p3fb7"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://c4debxvmbvinc" path="res://Levels/Tutorial/Sprites/Tarp/TutorialTarp5.png" id="9_v6gmv"]
 [ext_resource type="PackedScene" uid="uid://denmcawtlettb" path="res://Levels/Environment/Sun.tscn" id="16_r1fc6"]
 [ext_resource type="PackedScene" uid="uid://c1yl180l5y16p" path="res://Levels/Environment/Sprout/Sprout.tscn" id="19_0d7sr"]
+[ext_resource type="PackedScene" uid="uid://bg1yqxarvf1vb" path="res://Levels/SceneTransition/SceneTransition.tscn" id="20_7drb8"]
+[ext_resource type="PackedScene" uid="uid://dqvq8wixtc3ra" path="res://Levels/Level 1/level_1.tscn" id="21_dvbfj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g1mk"]
 size = Vector2(20, 117)
@@ -182,5 +184,10 @@ range_item_cull_mask = 2
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.25098, 0.25098, 0.25098, 1)
 metadata/_edit_lock_ = true
+
+[node name="SceneTransition" parent="." instance=ExtResource("20_7drb8")]
+position = Vector2(4617, 286)
+scale = Vector2(5, 5)
+new_scene = ExtResource("21_dvbfj")
 
 [connection signal="body_entered" from="Sprout" to="Sprout" method="_on_body_entered"]

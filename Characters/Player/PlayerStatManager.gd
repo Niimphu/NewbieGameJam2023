@@ -26,6 +26,8 @@ var is_in_shade: bool = false
 var sprouts_collected = 0
 var stunned: bool = false
 var invincible: bool = false
+var scene_transitioning: bool = false
+var scene_transition_ratio: float = 0.0
 
 func _ready():
 	self.connect("player_parasol_state_changed", _on_player_parasol_state_changed)
@@ -61,13 +63,20 @@ func _on_player_parasol_state_changed():
 func _on_regen_delay_timer_timeout():
 	can_regenerate_health = true
 
-func guess_ill_die():
-	await get_tree().create_timer(3).timeout
-
-	get_tree().reload_current_scene()
+func player_stat_refresh():
 	parasol_opening = false
 	parasol_open = false
 	can_regenerate_health = false
 	is_in_shade = false
 	health = MAX_HEALTH
+	stunned = false
+	invincible = false
+	sprouts_collected = 0
 	is_alive = true
+	scene_transitioning = false
+
+func guess_ill_die():
+	await get_tree().create_timer(3).timeout
+
+	get_tree().reload_current_scene()
+	player_stat_refresh()

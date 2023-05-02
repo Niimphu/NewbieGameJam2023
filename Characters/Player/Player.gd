@@ -220,7 +220,7 @@ func _on_hit_area_2d_body_entered(_body:Node2D):
 	if PlayerStatManager.invincible:
 		return
 
-	PlayerStatManager.health = clampf(PlayerStatManager.health - 20, 0, PlayerStatManager.MAX_HEALTH)
+	PlayerStatManager.health = clampf(PlayerStatManager.health - 15, 0, PlayerStatManager.MAX_HEALTH)
 	PlayerStatManager.emit_signal("player_health_changed")
 
 	if is_equal_approx(PlayerStatManager.health, 0.0):
@@ -234,7 +234,7 @@ func _on_hit_area_2d_body_entered(_body:Node2D):
 	invincibility_timer.start()
 	sprite.material.set_shader_parameter("invincible", PlayerStatManager.invincible)
 
-	var x_impulse_multiplier: float = 550.0
+	var x_impulse_multiplier: float = 450.0
 	var y_impulse_amount: float = 250.0
 	var direction_to_fly = _body.global_position.direction_to(global_position).normalized()
 

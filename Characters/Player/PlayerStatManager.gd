@@ -21,9 +21,11 @@ var parasol_opening: bool = false
 # The current open or closed state of the parasol, used for direct sunlight checks
 var parasol_open: bool = false
 
-var can_regenerate_health: bool = true
-var is_in_shade: bool = true
+var can_regenerate_health: bool = false
+var is_in_shade: bool = false
 var sprouts_collected = 0
+var stunned: bool = false
+var invincible: bool = false
 
 func _ready():
 	self.connect("player_parasol_state_changed", _on_player_parasol_state_changed)
@@ -42,7 +44,7 @@ func _process(delta):
 			can_regenerate_health = false
 			is_in_shade = false
 			emit_signal("player_health_changed")
-		elif not is_in_shade and (not DirectSunlightManager.player_in_sunlight or parasol_open):
+		elif not is_in_shade and (not DirectSunlightManager.player_in_sunlight or parasol_open) and not stunned:
 			is_in_shade = true
 			emit_signal("start_health_regen_timer")
 		elif health < MAX_HEALTH and can_regenerate_health:
@@ -63,5 +65,9 @@ func guess_ill_die():
 	await get_tree().create_timer(3).timeout
 
 	get_tree().reload_current_scene()
+	parasol_opening = false
+	parasol_open = false
+	can_regenerate_health = false
+	is_in_shade = false
 	health = MAX_HEALTH
 	is_alive = true

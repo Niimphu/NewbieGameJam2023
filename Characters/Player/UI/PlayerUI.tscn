@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://pxkpj2ulp307" path="res://Characters/Player/UI/HealthBar.tscn" id="1_u56eb"]
 [ext_resource type="PackedScene" uid="uid://d1ivkak7cgg1v" path="res://Characters/Player/UI/Vignette.tscn" id="2_1i8ju"]
-[ext_resource type="PackedScene" uid="uid://bfsq7oggqoy3m" path="res://Characters/Player/UI/Sprouts.tscn" id="2_fmowf"]
+[ext_resource type="PackedScene" path="res://Characters/Player/UI/Sprouts.tscn" id="2_fmowf"]
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3

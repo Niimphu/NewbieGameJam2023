@@ -16,6 +16,8 @@ extends CharacterBody2D
 @onready var attack_area2D: Area2D = $AttackArea2D
 @onready var regen_delay_timer: Timer = $RegenDelayTimer
 @onready var toggle_parasol_cooldown: Timer = $ToggleParasolCooldown
+@onready var stun_timer: Timer = $StunTimer
+@onready var invincibility_timer: Timer = $InvincibilityTimer
 
 # The initial scale of the sprite to be used to flip the sprite and preserve its position
 # so that it will stay within the CollisionShape2D.
@@ -52,6 +54,7 @@ var direction = Vector2.ZERO
 var death_particle_explosion_scene = preload("res://Characters/CrownCrab/CrownCrabDeathParticleExplosion.tscn")
 
 func _ready():
+	print("asdsasdadsasd")
 	update_parasol_animation_blend_positions()
 	animation_state.start("Idle")
 	
@@ -97,6 +100,9 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+
+	if PlayerStatManager.stunned:
+		direction = Vector2.ZERO
 
 	if direction.x:
 		velocity.x = clampf(velocity.x + (direction.x * ACCELERATION), -MAX_WALK_VELOCITY, MAX_WALK_VELOCITY)
@@ -203,7 +209,39 @@ func _on_player_died():
 	get_tree().get_first_node_in_group("level_root_node").add_child(death_particle_explosion)
 	death_particle_explosion.global_position = global_position
 	sprite.visible = false
+	set_process(false)
+	set_physics_process(false)
 
-
-func _on_fall_zone_body_entered(body):
+func _on_fall_zone_body_entered(_body):
 	PlayerStatManager.health = 0
+
+func _on_hit_area_2d_body_entered(_body:Node2D):
+	if PlayerStatManager.invincible:
+		return
+
+	PlayerStatManager.health = clampf(PlayerStatManager.health - 20, 0, PlayerStatManager.MAX_HEALTH)
+	PlayerStatManager.emit_signal("player_health_changed")
+
+	if is_equal_approx(PlayerStatManager.health, 0.0):
+		return
+	
+	PlayerStatManager.can_regenerate_health = false
+	PlayerStatManager.is_in_shade = false
+	PlayerStatManager.stunned = true
+	PlayerStatManager.invincible = true
+	stun_timer.start()
+	invincibility_timer.start()
+	sprite.material.set_shader_parameter("invincible", PlayerStatManager.invincible)
+
+	var x_impulse_multiplier: float = 550.0
+	var y_impulse_amount: float = 250.0
+	var direction_to_fly = _body.global_position.direction_to(global_position).normalized()
+
+	velocity = Vector2(sign(direction_to_fly.x) * x_impulse_multiplier, -y_impulse_amount);
+
+func _on_stun_timer_timeout():
+	PlayerStatManager.stunned = false
+
+func _on_invincibility_timer_timeout():
+	PlayerStatManager.invincible = false
+	sprite.material.set_shader_parameter("invincible", PlayerStatManager.invincible)

@@ -205,5 +205,10 @@ func _on_player_died():
 	sprite.visible = false
 
 
-func _on_fall_zone_body_entered(body):
+func _on_fall_zone_body_entered(_body):
 	PlayerStatManager.health = 0
+
+func _on_attack_area_2d_body_entered(body):
+	if "CrownCrab" in body.name:
+		animation_state.travel("Jump")
+		velocity.y = JUMP_VELOCITY

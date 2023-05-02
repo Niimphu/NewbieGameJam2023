@@ -208,20 +208,22 @@ position = Vector2(3599, 649)
 [node name="Sprout3" parent="." instance=ExtResource("9_18vxc")]
 position = Vector2(5952, 276)
 
-[node name="WanderingEnemy" parent="." instance=ExtResource("10_88ogy")]
+[node name="Crabbos" type="Node2D" parent="."]
+
+[node name="WanderingEnemy" parent="Crabbos" instance=ExtResource("10_88ogy")]
 position = Vector2(1476, 577)
 
-[node name="WanderingEnemy2" parent="." instance=ExtResource("10_88ogy")]
+[node name="WanderingEnemy2" parent="Crabbos" instance=ExtResource("10_88ogy")]
 position = Vector2(6700, 542)
+
+[node name="WanderingEnemy3" parent="Crabbos" instance=ExtResource("10_88ogy")]
+position = Vector2(3611, 608)
 
 [node name="Player" parent="." instance=ExtResource("9_8x4hg")]
 position = Vector2(129, 365)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
-
-[node name="WanderingEnemy3" parent="." instance=ExtResource("10_88ogy")]
-position = Vector2(3611, 608)
 
 [node name="PhysicsObjectBoundary" type="StaticBody2D" parent="."]
 position = Vector2(2504, 577)

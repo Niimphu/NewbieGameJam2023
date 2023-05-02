@@ -208,6 +208,7 @@ func _on_player_died():
 
 func _on_fall_zone_body_entered(_body):
 	PlayerStatManager.health = 0
+	PlayerStatManager.player_health_changed.emit()
 
 func _on_attack_area_2d_body_entered(body):
 	if "CrownCrab" in body.name and vertical_attack_strength > 0:

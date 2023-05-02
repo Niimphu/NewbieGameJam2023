@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqvq8wixtc3ra"]
+[gd_scene load_steps=22 format=3 uid="uid://dqvq8wixtc3ra"]
 
 [ext_resource type="Script" path="res://Levels/Environment/LevelInitializer.gd" id="1_kl51q"]
 [ext_resource type="Texture2D" uid="uid://clggv1w4txasf" path="res://Levels/Level 1/Sprites/Level1Ground.png" id="2_300wo"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://btcxwuqtyclt3" path="res://Levels/Tutorial/Sprites/Background2.PNG" id="7_1g4wn"]
 [ext_resource type="Texture2D" uid="uid://cwa63ksxdlsnc" path="res://Levels/Level 1/Sprites/ParallaxBG1.png" id="8_qk3o1"]
 [ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="9_8x4hg"]
+[ext_resource type="PackedScene" uid="uid://c1yl180l5y16p" path="res://Levels/Environment/Sprout/Sprout.tscn" id="9_18vxc"]
 [ext_resource type="Script" path="res://Levels/Level 1/Boulder.gd" id="10_kbvia"]
 [ext_resource type="Texture2D" uid="uid://1ypdkqskiit" path="res://Levels/Level 1/Sprites/BoulderSprite.png" id="11_t6r7b"]
 [ext_resource type="PackedScene" uid="uid://denmcawtlettb" path="res://Levels/Environment/Sun.tscn" id="12_84yq1"]
@@ -190,6 +191,15 @@ one_way_collision = true
 [node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="StaticBody2D2"]
 polygon = PackedVector2Array(5708, 292, 5743, 286, 6066, 279, 6136, 290, 6209, 328, 6406, 440, 6682, 572, 6868, 629, 6962, 631, 7904, 629, 7886, 1164, 6267, 957, 6011, 452, 5838, 333)
 one_way_collision = true
+
+[node name="Sprout" parent="." instance=ExtResource("9_18vxc")]
+position = Vector2(2958, 267)
+
+[node name="Sprout2" parent="." instance=ExtResource("9_18vxc")]
+position = Vector2(3599, 649)
+
+[node name="Sprout3" parent="." instance=ExtResource("9_18vxc")]
+position = Vector2(5952, 276)
 
 [node name="Player" parent="." instance=ExtResource("9_8x4hg")]
 position = Vector2(129, 365)

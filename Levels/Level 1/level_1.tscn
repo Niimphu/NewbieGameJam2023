@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqvq8wixtc3ra"]
+[gd_scene load_steps=23 format=3 uid="uid://dqvq8wixtc3ra"]
 
 [ext_resource type="Script" path="res://Levels/Environment/LevelInitializer.gd" id="1_kl51q"]
 [ext_resource type="Texture2D" uid="uid://clggv1w4txasf" path="res://Levels/Level 1/Sprites/Level1Ground.png" id="2_300wo"]
@@ -36,6 +36,12 @@ polygon = PackedVector2Array(3639, 246, 3646, 255, 3679, 264, 3726, 266, 3756, 2
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wmxal"]
 polygon = PackedVector2Array(4582, 346, 4639, 260, 4687, 212, 4787, 161, 4913, 83, 5019, -12, 5344, -199, 5647, -246, 6124, -293, 6588, -179, 6918, -78, 6985, 29, 7003, 129, 6991, 180, 6946, 218, 6946, 240, 6997, 244, 7483, 1463, 4216, 1267)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcaud"]
+size = Vector2(20, 159.69)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wlkok"]
+friction = 0.6
 
 [node name="Level_1" type="Node2D" groups=["level_root_node"]]
 script = ExtResource("1_kl51q")
@@ -197,25 +203,68 @@ position = Vector2(129, 365)
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
+[node name="PhysicsObjectBoundary" type="StaticBody2D" parent="."]
+position = Vector2(2504, 577)
+rotation = 0.425389
+scale = Vector2(1, 1)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsObjectBoundary"]
+position = Vector2(0, -16.5125)
+shape = SubResource("RectangleShape2D_rcaud")
+
+[node name="PhysicsObjectBoundary2" type="StaticBody2D" parent="."]
+position = Vector2(2515, 394)
+rotation = -0.461692
+scale = Vector2(1, 1)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsObjectBoundary2"]
+position = Vector2(0, -16.5125)
+shape = SubResource("RectangleShape2D_rcaud")
+
+[node name="PhysicsObjectBoundary3" type="StaticBody2D" parent="."]
+position = Vector2(2219, 660)
+rotation = -0.0228713
+scale = Vector2(1, 1)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsObjectBoundary3"]
+position = Vector2(0, -16.5125)
+shape = SubResource("RectangleShape2D_rcaud")
+
+[node name="PhysicsObjectBoundary4" type="StaticBody2D" parent="."]
+position = Vector2(2098, 553)
+rotation = 1.75688
+scale = Vector2(1, 1)
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsObjectBoundary4"]
+position = Vector2(0, -48.155)
+shape = SubResource("RectangleShape2D_rcaud")
+
 [node name="Boulder" type="RigidBody2D" parent="."]
-position = Vector2(11, 12)
+position = Vector2(1845, 430)
 collision_layer = 8
 collision_mask = 31
-center_of_mass_mode = 1
-center_of_mass = Vector2(0, 50)
-gravity_scale = 3.0
-lock_rotation = true
-linear_damp = 10.0
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_wlkok")
+can_sleep = false
 script = ExtResource("10_kbvia")
-MAX_VELOCITY = 20.0
+MAX_X_VELOCITY = -1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Boulder"]
-position = Vector2(1792, 437)
 scale = Vector2(0.3, 0.26)
 texture = ExtResource("11_t6r7b")
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boulder"]
-polygon = PackedVector2Array(1810, 536, 1740, 537, 1692, 511, 1673, 427, 1683, 389, 1718, 357, 1775, 345, 1853, 357, 1894, 388, 1908, 423, 1899, 471, 1873, 517, 1847, 531)
+polygon = PackedVector2Array(-78, -77, -31, -92, 28, -88, 67, -79, 93, -59, 106, -36, 114, -6, 112, 17, 101, 47, 85, 76, 62, 93, 15, 101, -47, 101, -85, 86, -103, 69, -103, 52, -116, 19, -116, -19, -106, -53)
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(129, 365)

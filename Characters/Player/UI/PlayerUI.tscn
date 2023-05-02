@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://5vev7xxhbg3f"]
+[gd_scene load_steps=4 format=3 uid="uid://5vev7xxhbg3f"]
 
 [ext_resource type="PackedScene" uid="uid://pxkpj2ulp307" path="res://Characters/Player/UI/HealthBar.tscn" id="1_u56eb"]
 [ext_resource type="PackedScene" uid="uid://d1ivkak7cgg1v" path="res://Characters/Player/UI/Vignette.tscn" id="2_1i8ju"]
+[ext_resource type="PackedScene" uid="uid://bfsq7oggqoy3m" path="res://Characters/Player/UI/Sprouts.tscn" id="2_fmowf"]
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -11,12 +12,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HealthBar" parent="." instance=ExtResource("1_u56eb")]
-layout_mode = 1
-offset_left = -746.0
-offset_top = -403.0
-offset_right = -346.0
-offset_bottom = -383.0
-
 [node name="Vignette" parent="." instance=ExtResource("2_1i8ju")]
 layout_mode = 0
+
+[node name="Sprouts" parent="." instance=ExtResource("2_fmowf")]
+offset_left = 1009.0
+offset_top = 785.0
+offset_right = 1049.0
+offset_bottom = 825.0
+
+[node name="HealthBar" parent="." instance=ExtResource("1_u56eb")]
+layout_mode = 1
+offset_left = -196.0
+offset_top = 349.0
+offset_right = 204.0
+offset_bottom = 369.0

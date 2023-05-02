@@ -103,6 +103,8 @@ func _physics_process(delta):
 		velocity.x = velocity.x + (direction.x * ACCELERATION)
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
+	else:
+		velocity.x = move_toward(velocity.x, 0, DECELERATION * 0.4)		
 
 	if is_on_wall():
 		check_pushable_object()

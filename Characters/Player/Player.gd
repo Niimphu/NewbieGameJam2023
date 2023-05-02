@@ -62,6 +62,7 @@ func _ready():
 	}
 
 	PlayerStatManager.connect("start_health_regen_timer", _on_start_health_regen_timer)
+	PlayerStatManager.connect("player_died", _on_player_died)
 	regen_delay_timer.connect("timeout", PlayerStatManager._on_regen_delay_timer_timeout)
 
 func _process(delta):
@@ -195,10 +196,8 @@ func update_current_attack_direction_state():
 func _on_start_health_regen_timer():
 	regen_delay_timer.start()
 
-func _on_player_ui_player_died():
+func _on_player_died():
 	var death_particle_explosion = death_particle_explosion_scene.instantiate()
 	get_tree().get_first_node_in_group("level_root_node").add_child(death_particle_explosion)
 	death_particle_explosion.global_position = global_position
-	visible = false
-	queue_free()
-	return
+	sprite.visible = false

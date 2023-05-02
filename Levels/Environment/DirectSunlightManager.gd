@@ -43,7 +43,7 @@ func refresh_shadow_detection():
 	if not shape_casts_root_node:
 		shape_casts_root_node = Node2D.new()
 		shape_casts_root_node.name = "ShadowShapeCasts"
-		level_root_node.add_child(shape_casts_root_node)
+		level_root_node.add_child.call_deferred(shape_casts_root_node)
 	
 	refresh_occluder_polygons()
 	delete_all_shadow_shape_casts()
@@ -92,6 +92,7 @@ func check_player_in_shadow():
 	player_in_sunlight = true
 	
 	for shadow_shape_cast in shadow_shape_casts:
-		if shadow_shape_cast.is_colliding():
-			player_in_sunlight = false
-			break
+		if is_instance_valid(shadow_shape_cast):
+			if shadow_shape_cast.is_colliding():
+				player_in_sunlight = false
+				break

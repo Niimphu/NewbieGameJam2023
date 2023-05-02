@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqvq8wixtc3ra"]
+[gd_scene load_steps=20 format=3 uid="uid://dqvq8wixtc3ra"]
 
 [ext_resource type="Texture2D" uid="uid://clggv1w4txasf" path="res://Levels/Level 1/Sprites/Level1Ground.png" id="1_fx00k"]
 [ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="1_kbnwk"]
+[ext_resource type="Script" path="res://Levels/Environment/LevelInitializer.gd" id="1_un8km"]
 [ext_resource type="Script" path="res://Levels/CloudsTutorial.gd" id="2_u4nr7"]
 [ext_resource type="PackedScene" uid="uid://denmcawtlettb" path="res://Levels/Environment/Sun.tscn" id="3_nm4st"]
 [ext_resource type="Texture2D" uid="uid://lnvdwpo18ykl" path="res://Levels/Tutorial/Sprites/Cloud1.PNG" id="3_qkw46"]
@@ -34,6 +35,7 @@ polygon = PackedVector2Array(3639, 246, 3646, 255, 3679, 264, 3726, 266, 3756, 2
 polygon = PackedVector2Array(4582, 346, 4639, 260, 4687, 212, 4787, 161, 4913, 83, 5019, -12, 5344, -199, 5647, -246, 6124, -293, 6588, -179, 6918, -78, 6985, 29, 7003, 129, 6991, 180, 6946, 218, 6946, 240, 6997, 244, 7483, 1463, 4216, 1267)
 
 [node name="Level_1" type="Node2D" groups=["level_root_node"]]
+script = ExtResource("1_un8km")
 
 [node name="Ground" type="Sprite2D" parent="."]
 position = Vector2(3898, 313)
@@ -180,14 +182,6 @@ one_way_collision = true
 
 [node name="Player" parent="." instance=ExtResource("1_kbnwk")]
 position = Vector2(129, 365)
-DECELERATION = null
-ACCELERATION = null
-JUMP_VELOCITY = null
-MAX_WALK_VELOCITY = null
-ATTACKING_VELOCITY_MOD = null
-PARASOL_GRAVITY_MODIFIER = null
-OBJECT_PUSH_FORCE = null
-SHADOW_TRANSITION_SCALE = null
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")

@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://5vev7xxhbg3f"]
+[gd_scene load_steps=3 format=3 uid="uid://5vev7xxhbg3f"]
 
-[ext_resource type="Script" path="res://Characters/Player/PlayerStatManager.gd" id="1_fp16v"]
 [ext_resource type="PackedScene" uid="uid://pxkpj2ulp307" path="res://Characters/Player/UI/HealthBar.tscn" id="1_u56eb"]
 [ext_resource type="PackedScene" uid="uid://d1ivkak7cgg1v" path="res://Characters/Player/UI/Vignette.tscn" id="2_1i8ju"]
 
@@ -11,7 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fp16v")
 
 [node name="HealthBar" parent="." instance=ExtResource("1_u56eb")]
 layout_mode = 1

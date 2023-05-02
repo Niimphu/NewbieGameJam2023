@@ -33,7 +33,8 @@ func _process(delta):
 	if health <= 0 and is_alive:
 		is_alive = false
 		player_died.emit()
-		get_tree().reload_current_scene()
+		DirectSunlightManager.set_process(false)
+		guess_ill_die()
 	if DirectSunlightManager.is_processing():
 		if DirectSunlightManager.player_in_sunlight and not parasol_open:
 			health = clampf(health - (SUNLIGHT_DAMAGE_PER_SECOND * delta), 0.0, MAX_HEALTH)
@@ -56,3 +57,10 @@ func _on_player_parasol_state_changed():
 
 func _on_regen_delay_timer_timeout():
 	can_regenerate_health = true
+
+func guess_ill_die():
+	await get_tree().create_timer(3).timeout
+
+	get_tree().reload_current_scene()
+	health = MAX_HEALTH
+	is_alive = true

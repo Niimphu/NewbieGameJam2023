@@ -430,14 +430,6 @@ collision_mask = 9
 floor_constant_speed = true
 floor_snap_length = 4.0
 script = ExtResource("1_cg0yb")
-DECELERATION = null
-ACCELERATION = null
-JUMP_VELOCITY = null
-MAX_WALK_VELOCITY = null
-ATTACKING_VELOCITY_MOD = null
-PARASOL_GRAVITY_MODIFIER = null
-OBJECT_PUSH_FORCE = null
-SHADOW_TRANSITION_SCALE = null
 
 [node name="PauseManager" parent="." instance=ExtResource("2_vbasy")]
 
@@ -507,5 +499,4 @@ one_shot = true
 [node name="ToggleParasolCooldown" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="player_died" from="CanvasLayer/PlayerUI" to="." method="_on_player_ui_player_died"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

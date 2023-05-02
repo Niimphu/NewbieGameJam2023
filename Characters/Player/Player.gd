@@ -201,3 +201,7 @@ func _on_player_died():
 	get_tree().get_first_node_in_group("level_root_node").add_child(death_particle_explosion)
 	death_particle_explosion.global_position = global_position
 	sprite.visible = false
+
+
+func _on_fall_zone_body_entered(body):
+	PlayerStatManager.health = 0

@@ -1,17 +1,20 @@
-[gd_scene load_steps=20 format=3 uid="uid://dqvq8wixtc3ra"]
+[gd_scene load_steps=21 format=3 uid="uid://dqvq8wixtc3ra"]
 
-[ext_resource type="Texture2D" uid="uid://clggv1w4txasf" path="res://Levels/Level 1/Sprites/Level1Ground.png" id="1_fx00k"]
-[ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="1_kbnwk"]
-[ext_resource type="Script" path="res://Levels/Environment/LevelInitializer.gd" id="1_un8km"]
-[ext_resource type="Script" path="res://Levels/CloudsTutorial.gd" id="2_u4nr7"]
-[ext_resource type="PackedScene" uid="uid://denmcawtlettb" path="res://Levels/Environment/Sun.tscn" id="3_nm4st"]
-[ext_resource type="Texture2D" uid="uid://lnvdwpo18ykl" path="res://Levels/Tutorial/Sprites/Cloud1.PNG" id="3_qkw46"]
-[ext_resource type="Texture2D" uid="uid://cr6jq8a6a5j5q" path="res://Levels/Tutorial/Sprites/Cloud2.PNG" id="4_s4tr1"]
-[ext_resource type="Texture2D" uid="uid://ct351306a1d0r" path="res://Levels/Tutorial/Sprites/Cloud3.PNG" id="5_p33x6"]
-[ext_resource type="Texture2D" uid="uid://btcxwuqtyclt3" path="res://Levels/Tutorial/Sprites/Background2.PNG" id="6_bvgwj"]
-[ext_resource type="Texture2D" uid="uid://cwa63ksxdlsnc" path="res://Levels/Level 1/Sprites/ParallaxBG1.png" id="7_jv3ds"]
-[ext_resource type="Script" path="res://Levels/Level 1/Boulder.gd" id="9_ihtt1"]
-[ext_resource type="Texture2D" uid="uid://1ypdkqskiit" path="res://Levels/Level 1/Sprites/BoulderSprite.png" id="10_mkns0"]
+[ext_resource type="Script" path="res://Levels/Environment/LevelInitializer.gd" id="1_kl51q"]
+[ext_resource type="Texture2D" uid="uid://clggv1w4txasf" path="res://Levels/Level 1/Sprites/Level1Ground.png" id="2_300wo"]
+[ext_resource type="Script" path="res://Levels/CloudsTutorial.gd" id="3_7ut8t"]
+[ext_resource type="Texture2D" uid="uid://lnvdwpo18ykl" path="res://Levels/Tutorial/Sprites/Cloud1.PNG" id="4_ild7k"]
+[ext_resource type="Texture2D" uid="uid://cr6jq8a6a5j5q" path="res://Levels/Tutorial/Sprites/Cloud2.PNG" id="5_e0hd6"]
+[ext_resource type="Texture2D" uid="uid://ct351306a1d0r" path="res://Levels/Tutorial/Sprites/Cloud3.PNG" id="6_lkfq7"]
+[ext_resource type="Texture2D" uid="uid://btcxwuqtyclt3" path="res://Levels/Tutorial/Sprites/Background2.PNG" id="7_1g4wn"]
+[ext_resource type="Texture2D" uid="uid://cwa63ksxdlsnc" path="res://Levels/Level 1/Sprites/ParallaxBG1.png" id="8_qk3o1"]
+[ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="9_8x4hg"]
+[ext_resource type="Script" path="res://Levels/Level 1/Boulder.gd" id="10_kbvia"]
+[ext_resource type="Texture2D" uid="uid://1ypdkqskiit" path="res://Levels/Level 1/Sprites/BoulderSprite.png" id="11_t6r7b"]
+[ext_resource type="PackedScene" uid="uid://denmcawtlettb" path="res://Levels/Environment/Sun.tscn" id="12_84yq1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4u3k7"]
+size = Vector2(7827, 348)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3x4iu"]
 polygon = PackedVector2Array(-51, -18, 107, -22, 206, -9, 374, -24, 488, -61, 588, -78, 641, -92, 619, -57, 598, -17, 581, 2, 532, 17, 452, 43, 336, 69, 204, 90, 150, 95, 59, 109, -50, 142)
@@ -35,12 +38,20 @@ polygon = PackedVector2Array(3639, 246, 3646, 255, 3679, 264, 3726, 266, 3756, 2
 polygon = PackedVector2Array(4582, 346, 4639, 260, 4687, 212, 4787, 161, 4913, 83, 5019, -12, 5344, -199, 5647, -246, 6124, -293, 6588, -179, 6918, -78, 6985, 29, 7003, 129, 6991, 180, 6946, 218, 6946, 240, 6997, 244, 7483, 1463, 4216, 1267)
 
 [node name="Level_1" type="Node2D" groups=["level_root_node"]]
-script = ExtResource("1_un8km")
+script = ExtResource("1_kl51q")
+
+[node name="FallZone" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallZone"]
+position = Vector2(3903.5, 1186)
+shape = SubResource("RectangleShape2D_4u3k7")
 
 [node name="Ground" type="Sprite2D" parent="."]
 position = Vector2(3898, 313)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_fx00k")
+texture = ExtResource("2_300wo")
 
 [node name="ShadowCasters" type="Node2D" parent="."]
 
@@ -70,21 +81,21 @@ occluder = SubResource("OccluderPolygon2D_wmxal")
 [node name="ParallaxLayer_Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0, 0)
 motion_mirroring = Vector2(1152, 0)
-script = ExtResource("2_u4nr7")
+script = ExtResource("3_7ut8t")
 CLOUD_SPEED = -50.0
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_Clouds"]
 position = Vector2(1000, 250)
-texture = ExtResource("3_qkw46")
+texture = ExtResource("4_ild7k")
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_Clouds"]
 position = Vector2(797, 360)
-texture = ExtResource("4_s4tr1")
+texture = ExtResource("5_e0hd6")
 
 [node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_Clouds"]
 position = Vector2(291, 156)
-texture = ExtResource("5_p33x6")
+texture = ExtResource("6_lkfq7")
 
 [node name="ParallaxLayer_BackgroundTerrain" type="ParallaxLayer" parent="ParallaxBackground"]
 visible = false
@@ -93,7 +104,7 @@ motion_scale = Vector2(0.6, 0.1)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_BackgroundTerrain"]
 position = Vector2(2230, 333)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("6_bvgwj")
+texture = ExtResource("7_1g4wn")
 
 [node name="ParallaxLayer_BackgroundTerrain2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.92, 1)
@@ -101,7 +112,7 @@ motion_scale = Vector2(0.92, 1)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_BackgroundTerrain2"]
 position = Vector2(3890, 279)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_jv3ds")
+texture = ExtResource("8_qk3o1")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 14
@@ -180,7 +191,7 @@ one_way_collision = true
 polygon = PackedVector2Array(5708, 292, 5743, 286, 6066, 279, 6136, 290, 6209, 328, 6406, 440, 6682, 572, 6868, 629, 6962, 631, 7904, 629, 7886, 1164, 6267, 957, 6011, 452, 5838, 333)
 one_way_collision = true
 
-[node name="Player" parent="." instance=ExtResource("1_kbnwk")]
+[node name="Player" parent="." instance=ExtResource("9_8x4hg")]
 position = Vector2(129, 365)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
@@ -195,13 +206,13 @@ center_of_mass = Vector2(0, 50)
 gravity_scale = 3.0
 lock_rotation = true
 linear_damp = 10.0
-script = ExtResource("9_ihtt1")
+script = ExtResource("10_kbvia")
 MAX_VELOCITY = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Boulder"]
 position = Vector2(1792, 437)
 scale = Vector2(0.3, 0.26)
-texture = ExtResource("10_mkns0")
+texture = ExtResource("11_t6r7b")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boulder"]
 polygon = PackedVector2Array(1810, 536, 1740, 537, 1692, 511, 1673, 427, 1683, 389, 1718, 357, 1775, 345, 1853, 357, 1894, 388, 1908, 423, 1899, 471, 1873, 517, 1847, 531)
@@ -220,10 +231,12 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_limits = true
 
-[node name="Sun" parent="." instance=ExtResource("3_nm4st")]
+[node name="Sun" parent="." instance=ExtResource("12_84yq1")]
 position = Vector2(1669, -430)
 energy = 0.8
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.25098, 0.25098, 0.25098, 1)
 metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="FallZone" to="Player" method="_on_fall_zone_body_entered"]

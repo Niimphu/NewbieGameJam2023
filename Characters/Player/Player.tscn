@@ -419,13 +419,13 @@ graph_offset = Vector2(-99, -516.236)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wtqe7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7aihy"]
-size = Vector2(66.25, 46.25)
+size = Vector2(97.5, 71.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flhnj"]
-size = Vector2(46.25, 73.125)
+size = Vector2(71.25, 79.375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p73p7"]
-size = Vector2(53.75, 61.25)
+size = Vector2(77.5, 97.5)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
@@ -478,17 +478,20 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D_Front" type="CollisionShape2D" parent="AttackArea2D"]
-position = Vector2(50.625, 13.125)
+position = Vector2(66.25, 11.875)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7aihy")
 disabled = true
 
 [node name="CollisionShape2D_Up" type="CollisionShape2D" parent="AttackArea2D"]
-position = Vector2(15.625, -47.1875)
+position = Vector2(3.125, -50.3125)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_flhnj")
 disabled = true
 
 [node name="CollisionShape2D_Down" type="CollisionShape2D" parent="AttackArea2D"]
-position = Vector2(19.375, 20.625)
+position = Vector2(4.99999, 38.75)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_p73p7")
 disabled = true
 
@@ -520,6 +523,7 @@ wait_time = 3.0
 one_shot = true
 
 [connection signal="body_entered" from="HitArea2D" to="." method="_on_hit_area_2d_body_entered"]
+[connection signal="body_entered" from="AttackArea2D" to="." method="_on_attack_area_2d_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

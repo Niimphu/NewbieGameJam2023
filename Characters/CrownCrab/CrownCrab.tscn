@@ -72,6 +72,7 @@ scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_syhv0")
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
 
 [connection signal="area_entered" from="HitDetectionArea2D" to="." method="_on_hit_detection_area_2d_area_entered"]

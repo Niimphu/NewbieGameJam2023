@@ -6,7 +6,7 @@ const MIN_WANDER_DURATION_SECONDS: float = 1.0
 
 @export_group("Enemy Properties")
 
-@export var TAKE_DAMAGE_FORCE: Vector2 = Vector2(250.0, -500)
+@export var TAKE_DAMAGE_FORCE: Vector2 = Vector2(50.0, -150)
 @export var MAX_HEALTH: int = 3
 
 @export_subgroup("Movement")

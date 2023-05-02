@@ -23,6 +23,8 @@ extends CharacterBody2D
 # so that it will stay within the CollisionShape2D.
 @onready var sprite_scale = sprite.get_scale()
 
+var vertical_attack_strength: float
+
 var shader_shadow_scale: float = 0.0
 
 # This enum represents the different possible states of the Parasol animation
@@ -83,6 +85,7 @@ func _physics_process(delta):
 	apply_gravity(delta)
 
 	current_animation_state = animation_state.get_current_node()
+	vertical_attack_strength = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 
 	update_current_attack_direction_state()
 
@@ -192,8 +195,6 @@ func update_parasol_animation_blend_positions():
 	animation_tree.set("parameters/ToggleParasol/blend_position", parasol_state)
 
 func update_current_attack_direction_state():
-	var vertical_attack_strength = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-
 	if vertical_attack_strength < 0:
 		attack_direction_state = ATTACK_DIRECTION_STATES.UP
 	elif vertical_attack_strength > 0:
@@ -245,3 +246,8 @@ func _on_stun_timer_timeout():
 func _on_invincibility_timer_timeout():
 	PlayerStatManager.invincible = false
 	sprite.material.set_shader_parameter("invincible", PlayerStatManager.invincible)
+
+func _on_attack_area_2d_body_entered(body):
+	if "CrownCrab" in body.name and vertical_attack_strength > 0:
+		animation_state.travel("Jump")
+		velocity.y = JUMP_VELOCITY

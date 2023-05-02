@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqvq8wixtc3ra"]
+[gd_scene load_steps=25 format=3 uid="uid://dqvq8wixtc3ra"]
 
 [ext_resource type="Script" path="res://Levels/Environment/LevelInitializer.gd" id="1_kl51q"]
 [ext_resource type="Texture2D" uid="uid://clggv1w4txasf" path="res://Levels/Level 1/Sprites/Level1Ground.png" id="2_300wo"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cwa63ksxdlsnc" path="res://Levels/Level 1/Sprites/ParallaxBG1.png" id="8_qk3o1"]
 [ext_resource type="PackedScene" uid="uid://86i5b4bp1hry" path="res://Characters/Player/Player.tscn" id="9_8x4hg"]
 [ext_resource type="PackedScene" uid="uid://c1yl180l5y16p" path="res://Levels/Environment/Sprout/Sprout.tscn" id="9_18vxc"]
+[ext_resource type="PackedScene" uid="uid://ck0y1md12vgj0" path="res://Characters/CrownCrab/CrownCrab.tscn" id="10_88ogy"]
 [ext_resource type="Script" path="res://Levels/Level 1/Boulder.gd" id="10_kbvia"]
 [ext_resource type="Texture2D" uid="uid://1ypdkqskiit" path="res://Levels/Level 1/Sprites/BoulderSprite.png" id="11_t6r7b"]
 [ext_resource type="PackedScene" uid="uid://denmcawtlettb" path="res://Levels/Environment/Sun.tscn" id="12_84yq1"]
@@ -207,11 +208,20 @@ position = Vector2(3599, 649)
 [node name="Sprout3" parent="." instance=ExtResource("9_18vxc")]
 position = Vector2(5952, 276)
 
+[node name="WanderingEnemy" parent="." instance=ExtResource("10_88ogy")]
+position = Vector2(1476, 577)
+
+[node name="WanderingEnemy2" parent="." instance=ExtResource("10_88ogy")]
+position = Vector2(6700, 542)
+
 [node name="Player" parent="." instance=ExtResource("9_8x4hg")]
 position = Vector2(129, 365)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
+
+[node name="WanderingEnemy3" parent="." instance=ExtResource("10_88ogy")]
+position = Vector2(3611, 608)
 
 [node name="PhysicsObjectBoundary" type="StaticBody2D" parent="."]
 position = Vector2(2504, 577)
